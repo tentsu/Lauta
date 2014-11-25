@@ -1,0 +1,17 @@
+body {
+  font: 13px Geneva; }
+
+.thread {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  display: block;
+  overflow: auto; }
+  .thread .author {
+    color: green; }
+  .thread img {
+    float: left; }
+
+#react {
+  margin: 0 20px; }
+
+/*# sourceMappingURL=base.css.map */
