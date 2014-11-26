@@ -40,3 +40,4 @@ Thumbs.db
 *.css.map
 
 node_modules
+.brackets.json
