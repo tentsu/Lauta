@@ -1,17 +1,32 @@
 body {
   font: 13px Geneva; }
 
-.thread {
-  margin-bottom: 10px;
+.op {
+  background: #dadada; }
+
+.post {
+  margin-bottom: 30px;
   border: 1px solid #ccc;
   display: block;
   overflow: auto; }
-  .thread .author {
-    color: green; }
-  .thread img {
-    float: left; }
+  .post .title {
+    padding: 10px; }
+  .post .author {
+    color: green;
+    margin-right: 10px; }
+  .post .message {
+    padding: 10px;
+    padding-left: 0; }
+  .post .time, .post .author {
+    display: inline-block; }
+  .post img {
+    float: left;
+    max-width: 250px;
+    padding-right: 10px; }
+    .post img.full {
+      max-width: 100%; }
 
-#react {
-  margin: 0 20px; }
+.threadBox {
+  margin: 0 40px; }
 
 /*# sourceMappingURL=base.css.map */

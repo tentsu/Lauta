@@ -1,26 +1,84 @@
-[
-    {
-        "img": "http://placehold.it/350x150",
-        "time": "Tue Nov 25 2014 16:46:26 GMT+0200 (EET)",
-        "author": "1",
-        "message": "ddaaaaadsafsafaasda"
-    },
-    {
-        "img": "http://placehold.it/150x150",
-        "author": "dsadsada",
-        "message": "ddaaaaaaaaa adsadas fawra dasda"
-    },
-    {
-        "img": "http://placehold.it/50x150",
-        "author": "dsadsada",
-        "message": "ddaaaaaaaaa adsadas fawra dasda"
-    },
-    {
-        "author": "dsadsada",
-        "message": "ddaaaaaaaaa adsadas fawra dasda"
-    },
-    {
-        "author": "dsadsada",
-        "message": "ddaaaaaaaaa adsadas fawra dasda"
-    }
-]
+
+{
+    "threads": [
+        {
+            "op": {
+                "op": true,
+                "id": 122,
+                "img": "http://placehold.it/350x150",
+                "time": "Tue Nov 25 2014 16:46:26 GMT+0200 (EET)",
+                "author": "1",
+                "message": "OLLEN POSTIII"
+            },
+            "answers": [
+                {
+                    "img": "http://placehold.it/150x150",
+                    "author": "dsadsada",
+                    "message": "1ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "img": "http://placehold.it/150x150",
+                    "author": "dsadsada",
+                    "message": "2ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "img": "http://placehold.it/150x150",
+                    "author": "dsadsada",
+                    "message": "3ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "time": "Tue Nov 25 2014 16:46:26 GMT+0200 (EET)",
+                    "author": "dsadsada",
+                    "message": "4ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "author": "dsadsada",
+                    "message": "5ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "author": "dsadsada",
+                    "message": "6ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "author": "dsadsada",
+                    "message": "7ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "author": "dsadsada",
+                    "message": "8ddaaaaaaaaa adsadas fawra dasda"
+                },
+                {
+                    "author": "dyryr",
+                    "message": "9ffffff adsadas fawra dasda"
+                }
+            ]
+        },
+        {
+            "op": {
+                "op": true,
+                "id": 2123,
+                "img": "http://placehold.it/350x150",
+                "time": "Tue Nov 25 2014 16:46:26 GMT+0200 (EET)",
+                "author": "1",
+                "message": "ddaaaaadsafsafaasda"
+            },
+            "answers": [
+                {
+                    "img": "http://placehold.it/750x450",
+                    "author": "dsadsada",
+                    "message": "1rewteyrdfgd"
+                },
+                {
+                    "img": "http://placehold.it/150x150",
+                    "author": "dsadsada",
+                    "message": "2adsadhgfhjyddsa dasda"
+                },
+                {
+                    "img": "http://placehold.it/150x150",
+                    "author": "dsadsada",
+                    "message": "3jyj fawra dasda"
+                }
+            ]
+        }
+    ]
+}

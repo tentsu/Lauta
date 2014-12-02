@@ -2,20 +2,51 @@ body {
     font: 13px Geneva;
 }
 
-.thread {
-    
-    margin-bottom: 10px;
+.op {
+    background: rgb(218, 218, 218);
+}
+
+.answer {
+
+}
+
+.post {
+    margin-bottom: 30px;
     border: 1px solid #ccc;
     display: block;
     overflow: auto;
     
+    .title {
+        padding: 10px;
+    }
+    
     
     .author {
         color: green;
+        margin-right: 10px;
+    }
+    
+    .time {
+    
+    }
+    
+    .message {
+        padding:10px;
+        padding-left: 0;
+    }
+    
+    .time, .author {
+        display: inline-block;
     }
     
     img {
         float: left;
+        max-width: 250px;
+        padding-right: 10px;
+        
+        &.full {
+            max-width: 100%;
+        }
     }
 }
 
@@ -23,7 +54,7 @@ body {
 //    color: green;
 //}
 
-#react {
-    margin: 0 20px;
+.threadBox {
+    margin: 0 40px;
 
 } 
