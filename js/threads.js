@@ -62,7 +62,7 @@ var Thread = React.createClass({
 
             return (
                 <div className="thread">
-                    <Answer data={this.props.data.op} />
+                    <Answer data={this.props.data} op="true"/>
                     {this.props.data.answerCount - 3} posts skipped
                     {answers}
                 </div>
@@ -98,19 +98,15 @@ var Answer = React.createClass({
             'full': this.state.full
         });
         
-        var postStyles = (data.op) ? cx({
+        var postStyles = cx({
             'post': true,
-            'op': true,
-            'answer': false
-        }) : cx({
-            'post': true,
-            'op': false,
-            'answer': true
+            'op': this.props.op,
+            'answer': !this.props.op
         });
         
-        var titleBar = (data.op)
+        var titleBar = (this.props.op)
             ?   <div className="title">
-                    <a href={data.id}>DMASFMKSAFJKASJFKAJF</a>
+                    <a href={data.id}>{data.title}</a>
                 </div>
             : "";
         

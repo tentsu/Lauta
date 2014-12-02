@@ -104,6 +104,7 @@ var Answer = React.createClass({displayName: 'Answer',
             'answer': !this.props.op
         });
         
+
         var titleBar = (this.props.op)
             ?   React.createElement("div", {className: "title"}, 
                     React.createElement("a", {href: data.id}, data.title)

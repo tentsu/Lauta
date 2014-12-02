@@ -100,13 +100,23 @@ var Answer = React.createClass({displayName: 'Answer',
         
         var postStyles = cx({
             'post': true,
-            'op': this.props.op,
-            'answer': !this.props.op
+            'op': false,
+            'answer': false
         });
         
-        var titleBar = (this.props.op)
+//        var postStyles = (data.op) ? cx({
+//            'post': true,
+//            'op': true,
+//            'answer': false
+//        }) : cx({
+//            'post': true,
+//            'op': false,
+//            'answer': true
+//        });
+        
+        var titleBar = (data.op)
             ?   React.createElement("div", {className: "title"}, 
-                    React.createElement("a", {href: data.id}, data.title)
+                    React.createElement("a", {href: data.id}, "DMASFMKSAFJKASJFKAJF")
                 )
             : "";
         

@@ -104,6 +104,17 @@ var Answer = React.createClass({displayName: 'Answer',
             'answer': !this.props.op
         });
         
+        var codelines = string(data.message);
+        console.log(data.message)
+
+        var firstWords = [];
+        for (var i=0;i<codelines.length;i++)
+        {
+            var words = codelines[i].split(" ");
+            firstWords.push(words[0]);
+        }
+        console.log(firstWords)
+        
         var titleBar = (this.props.op)
             ?   React.createElement("div", {className: "title"}, 
                     React.createElement("a", {href: data.id}, data.title)

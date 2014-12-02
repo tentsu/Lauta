@@ -91,7 +91,7 @@ var Answer = React.createClass({displayName: 'Answer',
     },
     render: function() {
         var data = this.props.data;
-//        console.log(this.props)
+        console.log(this.props)
         
         var cx = React.addons.classSet;
         var imageSize = cx({
@@ -100,13 +100,23 @@ var Answer = React.createClass({displayName: 'Answer',
         
         var postStyles = cx({
             'post': true,
-            'op': this.props.op,
+            'op': !this.props.op,
             'answer': !this.props.op
         });
+//        
+//        var postStyles = (this.props.op) ? cx({
+//            'post': true,
+//            'op': true,
+//            'answer': false
+//        }) : cx({
+//            'post': true,
+//            'op': false,
+//            'answer': true
+//        });
         
         var titleBar = (this.props.op)
             ?   React.createElement("div", {className: "title"}, 
-                    React.createElement("a", {href: data.id}, data.title)
+                    React.createElement("a", {href: data.id}, "DMASFMKSAFJKASJFKAJF")
                 )
             : "";
         

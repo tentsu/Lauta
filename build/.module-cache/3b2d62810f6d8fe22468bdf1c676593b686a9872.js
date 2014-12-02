@@ -62,7 +62,7 @@ var Thread = React.createClass({displayName: 'Thread',
 
             return (
                 React.createElement("div", {className: "thread"}, 
-                    React.createElement(Answer, {data: this.props.data, op: "true"}), 
+                    React.createElement(Answer, {data: this.props.data}), 
                     this.props.data.answerCount - 3, " posts skipped", 
                     answers
                 )
@@ -98,15 +98,19 @@ var Answer = React.createClass({displayName: 'Answer',
             'full': this.state.full
         });
         
-        var postStyles = cx({
+        var postStyles = (data.op) ? cx({
             'post': true,
-            'op': this.props.op,
-            'answer': !this.props.op
+            'op': true,
+            'answer': false
+        }) : cx({
+            'post': true,
+            'op': false,
+            'answer': true
         });
         
-        var titleBar = (this.props.op)
+        var titleBar = (data.op)
             ?   React.createElement("div", {className: "title"}, 
-                    React.createElement("a", {href: data.id}, data.title)
+                    React.createElement("a", {href: data.id}, "DMASFMKSAFJKASJFKAJF")
                 )
             : "";
         

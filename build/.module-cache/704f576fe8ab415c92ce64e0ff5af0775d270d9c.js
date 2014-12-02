@@ -51,7 +51,7 @@ function ThreadFactory($http, $q, Threads) {
 //                }
 //            }
 
-            d.resolve(response);
+            d.resolve(data);
         });
         
 //        function getThreads() {
@@ -91,8 +91,6 @@ function Threads($resource) {
     
      
 function ThreadCtrl ($scope, $interval, $routeParams, ThreadFactory) {
-    
-    console.log("fafsafsa")
     $scope.params = $routeParams;
     $scope.thread = {};
 

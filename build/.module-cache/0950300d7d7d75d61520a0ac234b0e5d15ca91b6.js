@@ -91,7 +91,7 @@ var Answer = React.createClass({displayName: 'Answer',
     },
     render: function() {
         var data = this.props.data;
-//        console.log(this.props)
+        console.log(this.props)
         
         var cx = React.addons.classSet;
         var imageSize = cx({

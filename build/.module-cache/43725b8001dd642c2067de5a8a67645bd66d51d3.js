@@ -51,7 +51,7 @@ function ThreadFactory($http, $q, Threads) {
 //                }
 //            }
 
-            d.resolve(response);
+            d.resolve(data);
         });
         
 //        function getThreads() {

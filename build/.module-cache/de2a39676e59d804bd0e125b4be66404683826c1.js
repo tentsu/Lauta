@@ -39,7 +39,7 @@ function ThreadFactory($http, $q, Threads) {
         console.log("Loading messages...");
 
         var d = $q.defer();
-        Threads.get({id: id}, function(response) {
+        Threads.query({id: id}, function(response) {
             console.log(response);
             
 //            var data = response;
@@ -51,7 +51,7 @@ function ThreadFactory($http, $q, Threads) {
 //                }
 //            }
 
-            d.resolve(response);
+            d.resolve(data);
         });
         
 //        function getThreads() {
@@ -90,9 +90,7 @@ function Threads($resource) {
 }
     
      
-function ThreadCtrl ($scope, $interval, $routeParams, ThreadFactory) {
-    
-    console.log("fafsafsa")
+function ThreadCtrl ($scope, $http, $interval, $routeParams) {
     $scope.params = $routeParams;
     $scope.thread = {};
 

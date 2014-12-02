@@ -91,7 +91,7 @@ var Answer = React.createClass({displayName: 'Answer',
     },
     render: function() {
         var data = this.props.data;
-//        console.log(this.props)
+        console.log(this.props)
         
         var cx = React.addons.classSet;
         var imageSize = cx({
@@ -103,6 +103,16 @@ var Answer = React.createClass({displayName: 'Answer',
             'op': this.props.op,
             'answer': !this.props.op
         });
+        
+        var firstWords = [];
+        for (var i=0;i<data.message.length;i++)
+        {
+            var codeLine = data.message[i];
+            var firstWord = data.message.substr(0, codeLine.indexOf(" "));
+            firstWords.push(firstWord);
+        }
+        
+        console.log(firstWords)
         
         var titleBar = (this.props.op)
             ?   React.createElement("div", {className: "title"}, 
