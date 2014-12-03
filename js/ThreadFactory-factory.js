@@ -13,7 +13,7 @@ function ThreadFactory($http, $q, Threads) {
 
         var d = $q.defer();
         Threads.query({}, function(response) {
-//            console.log(response);
+            console.log(response);
             
             var data = response;
 
@@ -30,6 +30,8 @@ function ThreadFactory($http, $q, Threads) {
             
             
             d.resolve(data);
+        }, function (response) {
+            console.log(response)
         });
 
         return d.promise;
@@ -41,32 +43,10 @@ function ThreadFactory($http, $q, Threads) {
         var d = $q.defer();
         Threads.get({id: id}, function(response) {
             console.log(response);
-            
-//            var data = response;
-
-//            for (var i = 0; i < data.length; i++) {
-//                if (data.threads[i].op.id == $routeParams.threadId) {
-//                    $scope.thread = data.threads[i];
-//                    break;
-//                }
-//            }
-
             d.resolve(response);
+        }, function (response) {
+            console.log(response)
         });
-        
-//        function getThreads() {
-//        console.log("Loading messages...");
-//        // TODO: Fetch from DB
-//         $http.get("threads.json").success( function(data) {
-//
-//                for (var i = 0; i < data.threads.length; i++) {
-//                    if (data.threads[i].op.id == $routeParams.threadId) {
-//                        $scope.thread = data.threads[i];
-//                        break;
-//                    }
-//                }
-//            });
-//        }
         
         return d.promise;
     }
@@ -91,14 +71,11 @@ function Threads($resource) {
     
      
 function ThreadCtrl ($scope, $interval, $routeParams, ThreadFactory) {
-    
-    console.log("fafsafsa")
-    $scope.params = $routeParams;
     $scope.thread = {};
 
     $scope.thread = ThreadFactory.getThread($routeParams.threadId);
     $scope.thread.then( function(data) {
-        console.log(data)
+//        console.log(data)
         $scope.thread = data;
     })
     

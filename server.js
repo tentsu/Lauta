@@ -11,10 +11,7 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use('/partials', express.static(__dirname + '/partials'));
     
-    app.all('/*', function(req, res, next) {
-        // Just send the index.html for other files to support HTML5Mode
-        res.sendFile('index.html', { root: __dirname });
-    });
+    
     
     var threads = db.collection("threads");
 
@@ -39,8 +36,9 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
         "use strict";
         
         console.log("thread with id "+req.params.id)
+        console.log(typeof(req.params.id))
         
-        threads.findOne({'id': req.params.id}, function(err, thread) {
+        threads.findOne({'id': parseInt(req.params.id)}, function(err, thread) {
             "use strict";
 
             console.log(thread);
@@ -64,6 +62,11 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
 
     //        callback(err, numModified);
         });
+    });
+    
+    app.get('*', function(req, res, next) {
+        // Just send the index.html for other files to support HTML5Mode
+        res.sendFile('index.html', { root: __dirname });
     });
     
 
