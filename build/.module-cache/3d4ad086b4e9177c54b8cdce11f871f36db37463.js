@@ -38,16 +38,11 @@ var NewThread = React.createClass({displayName: 'NewThread',
         e.preventDefault();
         
         
-        var post = {
-            title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
-        };
-        
+        var title = this.refs.author.getDOMNode().value.trim();
+        console.log("fafas");
         $.ajax({
-            url: "/api/posts",
+            url: "/api/addpost",
             dataType: 'json',
-            type: "POST",
-            data: post,
             success: function(data) {
                 console.log("VISKATAAAN")
             }.bind(this),
@@ -64,8 +59,8 @@ var NewThread = React.createClass({displayName: 'NewThread',
             React.createElement("div", {className: "newThread"}, 
                 React.createElement("form", {name: "newThread", onSubmit: this.createThread}, 
                     React.createElement("strong", null, "New thread"), 
-                    React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
-                    React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
+                    React.createElement("input", {type: "text", placeholder: "Thread title", name: "title", id: "newThreadTitle"}), 
+                    React.createElement("textarea", {id: "newThreadMessage", placeholder: "Thread message"}), 
                     React.createElement("input", {type: "file"}), 
                     React.createElement("button", {type: "submit"}, "Create thread")
                 )
@@ -93,7 +88,7 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
-        if (this.props.data.answers[0] != undefined) {
+        if (this.props.data.answers != undefined) {
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     React.createElement(Answer, {data: answer, key: answer.id})

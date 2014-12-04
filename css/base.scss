@@ -1,3 +1,13 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+* {
+    outline: none;
+}
 body {
     font: 13px Geneva;
 }
@@ -58,3 +68,55 @@ body {
     margin: 0 40px;
 
 } 
+
+.newThread {
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    @include border-radius(5px);
+    
+    input, textarea {
+        @include border-radius(2px);
+        box-sizing: border-box;
+        display: block;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        width: 100%;
+        font: 12px Arial;
+        padding: 5px;
+        margin: 10px 0;
+    }
+    
+    textarea {
+        height: 100px;
+        resize: vertical;
+    }
+    
+    button {
+        @include border-radius(5px);
+        width: 100px;
+        padding: 10px;
+        background-color: rgb(144, 186, 186);
+        border: 1px solid #3E9898;
+        margin: 0 auto;
+        display: block;
+        box-sizing: content-box;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(140, 163, 163);
+            border: 1px solid #5F7B7B;
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+

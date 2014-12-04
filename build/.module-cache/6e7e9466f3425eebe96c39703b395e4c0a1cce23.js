@@ -93,6 +93,7 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
+        console.log(this.props.data.answers)
         if (this.props.data.answers[0] != undefined) {
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (

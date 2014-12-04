@@ -4,16 +4,14 @@ var Lauta = React.createClass({
             threads: []
         };
     },
-//    propTypes: {
-//        threads : React.PropTypes.array.isRequired,
-//    },
     render: function() {
 //        console.log("All threads")
-//        console.log(this.props)
+        console.log(this.props)
         return (
             <div className="threadBox">
-            <h1>Lauta</h1>
-            <ThreadList data={this.props}/>
+                <h1>Lauta</h1>
+                <NewThread/>
+                <ThreadList data={this.props}/>
             </div>
         );
     }
@@ -35,6 +33,48 @@ var Opened = React.createClass({
 
 
 
+var NewThread = React.createClass({
+    createThread: function(e) {
+        e.preventDefault();
+        
+        
+        var post = {
+            title: this.refs.title.getDOMNode().value.trim(),
+            message: this.refs.message.getDOMNode().value.trim()
+        };
+        
+        $.ajax({
+            url: "/api/posts",
+            dataType: 'json',
+            type: "POST",
+            data: post,
+            success: function(data) {
+                console.log("VISKATAAAN")
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+    componentWillMount: function(){
+        console.log(this.props);
+    },
+    render: function() {
+        return (
+            <div className="newThread">
+                <form name="newThread" onSubmit={this.createThread}>
+                    <strong>New thread</strong>
+                    <input type="text" placeholder="Thread title" ref="title"/>
+                    <textarea ref="message" placeholder="Thread message"></textarea>
+                    <input type="file" />
+                    <button type="submit">Create thread</button>
+                </form>
+            </div>
+        );
+    }
+});
+
+
 var ThreadList = React.createClass({
     render: function() {
         var threads = this.props.data.threads.map(function(thread, index) {
@@ -53,7 +93,7 @@ var ThreadList = React.createClass({
 
 var Thread = React.createClass({
     render: function() {
-        if (this.props.data.answers != undefined) {
+        if (this.props.data.answers[0] != undefined) {
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     <Answer data={answer} key={answer.id} />

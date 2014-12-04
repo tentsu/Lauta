@@ -36,36 +36,19 @@ var Opened = React.createClass({displayName: 'Opened',
 var NewThread = React.createClass({displayName: 'NewThread',
     createThread: function(e) {
         e.preventDefault();
-        
-        
-        var post = {
-            title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
-        };
-        
-        $.ajax({
-            url: "/api/posts",
-            dataType: 'json',
-            type: "POST",
-            data: post,
-            success: function(data) {
-                console.log("VISKATAAAN")
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+        console.log("fafas");
     },
     componentWillMount: function(){
         console.log(this.props);
+       var scope = this.props.scope;
     },
     render: function() {
         return (
             React.createElement("div", {className: "newThread"}, 
                 React.createElement("form", {name: "newThread", onSubmit: this.createThread}, 
                     React.createElement("strong", null, "New thread"), 
-                    React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
-                    React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
+                    React.createElement("input", {type: "text", placeholder: "Thread title", name: "title", id: "newThreadTitle"}), 
+                    React.createElement("textarea", {id: "newThreadMessage", placeholder: "Thread message"}), 
                     React.createElement("input", {type: "file"}), 
                     React.createElement("button", {type: "submit"}, "Create thread")
                 )
@@ -93,7 +76,7 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
-        if (this.props.data.answers[0] != undefined) {
+        if (this.props.data.answers != undefined) {
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     React.createElement(Answer, {data: answer, key: answer.id})

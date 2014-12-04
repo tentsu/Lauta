@@ -6,7 +6,7 @@ var Lauta = React.createClass({displayName: 'Lauta',
     },
     render: function() {
 //        console.log("All threads")
-        console.log(this.props)
+//        console.log(this.props)
         return (
             React.createElement("div", {className: "threadBox"}, 
                 React.createElement("h1", null, "Lauta"), 
@@ -34,41 +34,14 @@ var Opened = React.createClass({displayName: 'Opened',
 
 
 var NewThread = React.createClass({displayName: 'NewThread',
-    createThread: function(e) {
-        e.preventDefault();
-        
-        
-        var post = {
-            title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
-        };
-        
-        $.ajax({
-            url: "/api/posts",
-            dataType: 'json',
-            type: "POST",
-            data: post,
-            success: function(data) {
-                console.log("VISKATAAAN")
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
-    },
-    componentWillMount: function(){
-        console.log(this.props);
-    },
     render: function() {
         return (
             React.createElement("div", {className: "newThread"}, 
-                React.createElement("form", {name: "newThread", onSubmit: this.createThread}, 
-                    React.createElement("strong", null, "New thread"), 
-                    React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
-                    React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
-                    React.createElement("input", {type: "file"}), 
-                    React.createElement("button", {type: "submit"}, "Create thread")
-                )
+                React.createElement("strong", null, "New thread"), 
+                React.createElement("input", {type: "text", value: "title", name: "title", id: "newThreadTitle"}), React.createElement("br", null), 
+                React.createElement("textarea", {id: "newThreadMessage"}), React.createElement("br", null), 
+                React.createElement("input", {type: "file"}), React.createElement("br", null), 
+                React.createElement("button", null, "Create thread")
             )
         );
     }
@@ -93,7 +66,7 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
-        if (this.props.data.answers[0] != undefined) {
+        if (this.props.data.answers != undefined) {
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     React.createElement(Answer, {data: answer, key: answer.id})

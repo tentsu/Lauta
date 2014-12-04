@@ -31,11 +31,7 @@ angular.module("Thread", []);
 angular.module("Main")
     .controller("MainCtrl", MainCtrl)
     .directive('lauta', function( reactDirective ) {
-        return {
-            link: function (scope, el, attrs) {
-                reactDirective( Lauta({scope: scope}) )
-            }
-        }
+        return reactDirective( Lauta );
     })
     .directive('opened', function( reactDirective ) {
         return reactDirective( Opened );
@@ -49,10 +45,6 @@ function MainCtrl ($scope, $http, $interval, ThreadFactory) {
 //        console.log(data.e)
         $scope.threads.threads = data;
     })
-    
-    $scope.asd = function() {
-        console.log("csafsa")
-    };
 }
 
 })();

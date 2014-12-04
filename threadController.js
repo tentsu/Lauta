@@ -46,7 +46,7 @@ function ThreadController(db) {
         "use strict";
 
         console.log("new post to thread")
-        console.log(req)
+//        console.log(req)
 
         threads.update({id:id}, {'$push': {'answers': answer}}, function(err, asd) {
             "use strict";
@@ -55,6 +55,33 @@ function ThreadController(db) {
 
     //        callback(err, numModified);
         });
+    }
+    /*
+     * Add post to thread
+     */
+    this.addNewThread = function(req, res, next) {
+        "use strict";
+
+        console.log("new thread")
+        console.log(req.body)
+        
+        req.body.id = createThreadId();
+        req.body.time = new Date();
+        req.body.answers = [];
+
+        threads.insert(req.body, function(err, asd) {
+            "use strict";
+            
+            console.log(asd)
+
+            if (err) return callback(err, null);
+
+    //        callback(err, numModified);
+        });
+    }
+    
+    function createThreadId() {
+        return Math.random();
     }
 }
 

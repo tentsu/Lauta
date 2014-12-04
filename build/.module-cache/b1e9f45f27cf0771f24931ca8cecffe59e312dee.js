@@ -32,6 +32,7 @@ angular.module("Main")
     .controller("MainCtrl", MainCtrl)
     .directive('lauta', function( reactDirective ) {
         return {
+            scope: true,
             link: function (scope, el, attrs) {
                 reactDirective( Lauta({scope: scope}) )
             }
