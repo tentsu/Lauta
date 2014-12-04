@@ -13,7 +13,6 @@ function ThreadFactory($http, $q, Threads) {
 
         var d = $q.defer();
         Threads.query({}, function(response) {
-//            console.log(response);
             var data = response;
 
             for (var i = 0; i < data.length; i++) {
@@ -26,7 +25,6 @@ function ThreadFactory($http, $q, Threads) {
                 data[i].answers = temp;
                 data[i].answerCount = pituus;
             }
-            
             
             d.resolve(data);
         }, function (response) {
@@ -41,7 +39,7 @@ function ThreadFactory($http, $q, Threads) {
 
         var d = $q.defer();
         Threads.get({id: id}, function(response) {
-            console.log(response);
+            response.answerCount = response.answers.length;
             d.resolve(response);
         }, function (response) {
             console.log(response)

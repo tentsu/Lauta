@@ -2,16 +2,18 @@
   outline: none; }
 
 body {
-  font: 13px Geneva; }
+  font: 12px Geneva; }
 
 .op {
-  background: #dadada; }
+  background: #F1F7F5; }
 
 .post {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   display: block;
   overflow: auto; }
+  .post.op {
+    margin-bottom: 0; }
   .post .title {
     padding: 10px; }
   .post .author {
@@ -28,6 +30,10 @@ body {
     padding-right: 10px; }
     .post img.full {
       max-width: 100%; }
+
+.meta-data {
+  font-size: 10px;
+  margin: 5px 0 10px; }
 
 .threadBox {
   margin: 0 40px; }

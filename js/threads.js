@@ -102,11 +102,11 @@ var Thread = React.createClass({
                 );
             });
         }
-            
+        
         return (
             <div className="thread">
                 <Answer data={this.props.data} op="true"/>
-                {skippedAnswers} posts skipped
+                <div className="meta-data">{skippedAnswers} posts skipped</div>
                 {answers}
             </div>
         );

@@ -102,11 +102,11 @@ var Thread = React.createClass({displayName: 'Thread',
                 );
             });
         }
-            
+        
         return (
             React.createElement("div", {className: "thread"}, 
                 React.createElement(Answer, {data: this.props.data, op: "true"}), 
-                skippedAnswers, " posts skipped", 
+                React.createElement("div", {className: "meta-data"}, skippedAnswers, " posts skipped"), 
                 answers
             )
         );
