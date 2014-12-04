@@ -13,8 +13,7 @@ function ThreadFactory($http, $q, Threads) {
 
         var d = $q.defer();
         Threads.query({}, function(response) {
-            console.log(response);
-            
+//            console.log(response);
             var data = response;
 
             for (var i = 0; i < data.length; i++) {

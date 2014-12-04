@@ -13,7 +13,7 @@ function ThreadController(db) {
         threads.findOne({'id': parseInt(req.params.id)}, function(err, thread) {
             "use strict";
 
-//            console.log(thread);
+            console.log(thread);
             return res.json(thread)
         });
 
@@ -66,7 +66,7 @@ function ThreadController(db) {
         console.log("new thread")
         console.log(req.body)
         
-        req.body.id = createThreadId();
+        req.body.id = parseInt(createThreadId());
         req.body.time = new Date();
         req.body.answers = [];
         req.body.author = "addsa";

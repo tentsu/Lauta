@@ -48,13 +48,9 @@ var NewThread = React.createClass({displayName: 'NewThread',
             type: "POST",
             data: post,
             success: function(data) {
-                console.log("VISKATTU")
-                console.log(data)
-                
-//                window.location.replace(data);
+                window.location.replace("/"+data);
             }.bind(this),
             error: function(xhr, status, err) {
-                console.log("erroria");
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
@@ -92,13 +88,6 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 });
 
 var Thread = React.createClass({displayName: 'Thread',
-    getDefaultProps: function() {
-        return {
-            data: {
-                answers: []
-            }
-        };
-    },
     render: function() {
         var skippedAnswers = 0;
         
