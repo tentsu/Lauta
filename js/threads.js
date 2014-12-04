@@ -10,6 +10,7 @@ var Lauta = React.createClass({
         return (
             <div className="threadBox">
                 <h1>Lauta</h1>
+                <div className="info">{this.props.threads.length} threads in this board!</div>
                 <NewThread/>
                 <ThreadList data={this.props}/>
             </div>
@@ -121,8 +122,6 @@ var Answer = React.createClass({
         };
     },
     imageClick: function(event) {
-        console.log("image clicked")
-
         if (event.button == 1 || event.button == 2) {
             return;
         }
