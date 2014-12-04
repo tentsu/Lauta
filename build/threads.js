@@ -6,7 +6,7 @@ var Lauta = React.createClass({displayName: 'Lauta',
     },
     render: function() {
 //        console.log("All threads")
-        console.log(this.props)
+//        console.log(this.props)
         return (
             React.createElement("div", {className: "threadBox"}, 
                 React.createElement("h1", null, "Lauta"), 
@@ -37,7 +37,6 @@ var NewThread = React.createClass({displayName: 'NewThread',
     createThread: function(e) {
         e.preventDefault();
         
-        
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
             message: this.refs.message.getDOMNode().value.trim()
@@ -49,15 +48,16 @@ var NewThread = React.createClass({displayName: 'NewThread',
             type: "POST",
             data: post,
             success: function(data) {
-                console.log("VISKATAAAN")
+                console.log("VISKATTU")
+                console.log(data)
+                
+//                window.location.replace(data);
             }.bind(this),
             error: function(xhr, status, err) {
+                console.log("erroria");
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
-    },
-    componentWillMount: function(){
-        console.log(this.props);
     },
     render: function() {
         return (
@@ -92,23 +92,35 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 });
 
 var Thread = React.createClass({displayName: 'Thread',
+    getDefaultProps: function() {
+        return {
+            data: {
+                answers: []
+            }
+        };
+    },
     render: function() {
-        if (this.props.data.answers[0] != undefined) {
+        var skippedAnswers = 0;
+        
+        if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
+            this.props.data.answers = [];
+        } else {
+            skippedAnswers = this.props.data.answerCount - 3;
+            
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     React.createElement(Answer, {data: answer, key: answer.id})
                 );
             });
-
-            return (
-                React.createElement("div", {className: "thread"}, 
-                    React.createElement(Answer, {data: this.props.data, op: "true"}), 
-                    this.props.data.answerCount - 3, " posts skipped", 
-                    answers
-                )
-            );
         }
-        return (React.createElement("div", {key: "asd"}));
+            
+        return (
+            React.createElement("div", {className: "thread"}, 
+                React.createElement(Answer, {data: this.props.data, op: "true"}), 
+                skippedAnswers, " posts skipped", 
+                answers
+            )
+        );
     }
 });
 

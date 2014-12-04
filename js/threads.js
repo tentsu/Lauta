@@ -6,7 +6,7 @@ var Lauta = React.createClass({
     },
     render: function() {
 //        console.log("All threads")
-        console.log(this.props)
+//        console.log(this.props)
         return (
             <div className="threadBox">
                 <h1>Lauta</h1>
@@ -37,7 +37,6 @@ var NewThread = React.createClass({
     createThread: function(e) {
         e.preventDefault();
         
-        
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
             message: this.refs.message.getDOMNode().value.trim()
@@ -49,15 +48,16 @@ var NewThread = React.createClass({
             type: "POST",
             data: post,
             success: function(data) {
-                console.log("VISKATAAAN")
+                console.log("VISKATTU")
+                console.log(data)
+                
+//                window.location.replace(data);
             }.bind(this),
             error: function(xhr, status, err) {
+                console.log("erroria");
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
-    },
-    componentWillMount: function(){
-        console.log(this.props);
     },
     render: function() {
         return (
@@ -92,23 +92,35 @@ var ThreadList = React.createClass({
 });
 
 var Thread = React.createClass({
+    getDefaultProps: function() {
+        return {
+            data: {
+                answers: []
+            }
+        };
+    },
     render: function() {
-        if (this.props.data.answers[0] != undefined) {
+        var skippedAnswers = 0;
+        
+        if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
+            this.props.data.answers = [];
+        } else {
+            skippedAnswers = this.props.data.answerCount - 3;
+            
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
                     <Answer data={answer} key={answer.id} />
                 );
             });
-
-            return (
-                <div className="thread">
-                    <Answer data={this.props.data} op="true"/>
-                    {this.props.data.answerCount - 3} posts skipped
-                    {answers}
-                </div>
-            );
         }
-        return (<div key="asd" />);
+            
+        return (
+            <div className="thread">
+                <Answer data={this.props.data} op="true"/>
+                {skippedAnswers} posts skipped
+                {answers}
+            </div>
+        );
     }
 });
 

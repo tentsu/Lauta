@@ -9,7 +9,6 @@ function ThreadController(db) {
         "use strict";
         
         console.log("thread with id "+req.params.id)
-        console.log(typeof(req.params.id))
         
         threads.findOne({'id': parseInt(req.params.id)}, function(err, thread) {
             "use strict";
@@ -56,6 +55,8 @@ function ThreadController(db) {
     //        callback(err, numModified);
         });
     }
+    
+    
     /*
      * Add post to thread
      */
@@ -68,20 +69,33 @@ function ThreadController(db) {
         req.body.id = createThreadId();
         req.body.time = new Date();
         req.body.answers = [];
+        req.body.author = "addsa";
+        req.body.img = "http://placehold.it/300x100";
 
-        threads.insert(req.body, function(err, asd) {
+        threads.insert(req.body, function(err, inserted) {
             "use strict";
             
-            console.log(asd)
-
-            if (err) return callback(err, null);
+            console.log(inserted)
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            
+            res.send((req.body.id).toString());
 
     //        callback(err, numModified);
         });
     }
     
     function createThreadId() {
-        return Math.random();
+        var arr = "";
+        
+        for (var i = 0; i < 8; i++ ) {
+            arr += getRandomInt(0, 9).toString();
+        }
+        
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        return arr;
     }
 }
 
