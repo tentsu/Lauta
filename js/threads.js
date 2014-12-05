@@ -40,19 +40,16 @@ var NewThread = React.createClass({
         e.preventDefault();
         e.stopPropagation(); 
                 
-        var file = document.getElementById('postImage').files[0];
-        
-        var data = new FormData();
-        data.append("img", file);
+//        var file = document.getElementById('postImage').files[0];
+//        
+//        var data = new FormData();
+//        data.append("img", file);
         
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim(),
-            img: file
+            message: this.refs.message.getDOMNode().value.trim()
+//            img: file
         };
-        
-        console.log(data)
-        
         
         if (post.title == "") {
             post.title = "ASD";
@@ -66,9 +63,7 @@ var NewThread = React.createClass({
             url: "/api/posts",
             dataType: 'json',
             type: "POST",
-            data: data,
-            processData: false,
-            contentType: false,
+            data: post,
             success: function(data) {
                 window.location.replace("/"+data);
             }.bind(this),
@@ -153,12 +148,10 @@ var Thread = React.createClass({
         if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
             this.props.data.answers = [];
         } else {
-            if (this.props.data.answers.length <= 3) {
-                skippedAnswers = 
-                    <div className="meta-data">
-                        {this.props.data.answerCount - 3} posts skipped
-                    </div>;
-            }
+            skippedAnswers = 
+                <div className="meta-data">
+                    {this.props.data.answerCount} answers
+                </div>;
             
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (

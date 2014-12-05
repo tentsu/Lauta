@@ -55,10 +55,10 @@ function ThreadController(db) {
         
         console.log(req.body)
 
-        threads.update({id: parseInt(req.params.id)}, {'$push': {'answers': req.body}}, function(err, asd) {
+        threads.update({id: parseInt(req.params.id)}, {'$push': {'answers': req.body}}, function(err, added) {
             "use strict";
             
-            console.log(asd)
+            console.log(added)
 
             if (err) return callback(err, null);
             
@@ -77,23 +77,23 @@ function ThreadController(db) {
 
         console.log("new thread")
         
-        console.log(req.files)
+        console.log(req.body)
         
         req.body.id = createID(8);
         req.body.time = new Date();
         req.body.answers = [];
         req.body.author = "addsa";
-//        req.body.img = "http://placehold.it/300x100";
+        req.body.img = "http://placehold.it/300x100";
         
         threads.insert(req.body, function(err, inserted) {
             "use strict";
             
-            fs.readFile(req.files.displayImage.path, function (err, data) {
-                var newPath = __dirname + "/uploads/uploadedFileName";
-                fs.writeFile(newPath, data, function (err) {
-                    res.redirect("back");
-                });
-            });
+//            fs.readFile(req.files.displayImage.path, function (err, data) {
+//                var newPath = __dirname + "/uploads/uploadedFileName";
+//                fs.writeFile(newPath, data, function (err) {
+//                    res.redirect("back");
+//                });
+//            });
             
             
             console.log(inserted)
