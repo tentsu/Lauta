@@ -26,6 +26,7 @@ var Opened = React.createClass({displayName: 'Opened',
         return (
             React.createElement("div", {className: "threadBox"}, 
             React.createElement("a", {href: "/"}, React.createElement("h1", null, "Lauta")), 
+            React.createElement(AnswerThreadForm, {id: this.props.id}), 
             React.createElement(Thread, {data: this.props})
             )
         );
@@ -35,21 +36,79 @@ var Opened = React.createClass({displayName: 'Opened',
 
 
 var NewThread = React.createClass({displayName: 'NewThread',
-    createThread: function(e) {
+    sendForm: function(e, data) {
         e.preventDefault();
+        e.stopPropagation(); 
+                
+        var file = document.getElementById('postImage').files[0];
+        
+        var data = new FormData();
+        data.append("img", file);
         
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
+            message: this.refs.message.getDOMNode().value.trim(),
+            img: file
         };
+        
+        console.log(data)
+        
+        
+        if (post.title == "") {
+            post.title = "ASD";
+        }
+        if (post.message == "") {
+            post.message = "DERP";
+        }
+        
         
         $.ajax({
             url: "/api/posts",
             dataType: 'json',
             type: "POST",
-            data: post,
+            data: data,
+            processData: false,
+            contentType: false,
             success: function(data) {
                 window.location.replace("/"+data);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+//        
+    },
+    render: function() {
+        return (
+            React.createElement("div", {className: "threadForm new"}, 
+                React.createElement("form", {name: "newThread", encType: "multipart/form-data", onSubmit: this.sendForm}, 
+                    React.createElement("strong", null, "New thread"), 
+                    React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
+                    React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
+                    React.createElement("input", {type: "file", name: "displayImage", id: "postImage", accept: "image/*", ref: "image"}), 
+                    React.createElement("button", {type: "submit"}, "Create thread")
+                )
+            )
+        );
+    }
+});
+
+
+var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
+    sendForm: function(e) {
+        e.preventDefault();
+        
+        var post = {
+            message: this.refs.message.getDOMNode().value.trim()
+        };
+        
+        $.ajax({
+            url: "/api/posts/"+this.props.id,
+            dataType: 'json',
+            type: "PUT",
+            data: post,
+            success: function(data) {
+                window.location.replace("/"+this.props.id);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -58,13 +117,12 @@ var NewThread = React.createClass({displayName: 'NewThread',
     },
     render: function() {
         return (
-            React.createElement("div", {className: "newThread"}, 
-                React.createElement("form", {name: "newThread", onSubmit: this.createThread}, 
-                    React.createElement("strong", null, "New thread"), 
-                    React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
+            React.createElement("div", {className: "threadForm answer"}, 
+                React.createElement("form", {name: "answerThreadForm", onSubmit: this.sendForm}, 
+                    React.createElement("strong", null, "Answer thread"), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
                     React.createElement("input", {type: "file"}), 
-                    React.createElement("button", {type: "submit"}, "Create thread")
+                    React.createElement("button", {type: "submit"}, "Answer thread")
                 )
             )
         );
@@ -90,31 +148,36 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
-        var skippedAnswers = 0;
+        var skippedAnswers = React.createElement("div", null);
         
         if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
             this.props.data.answers = [];
         } else {
-            skippedAnswers = this.props.data.answerCount - 3;
+            if (this.props.data.answers.length <= 3) {
+                skippedAnswers = 
+                    React.createElement("div", {className: "meta-data"}, 
+                        this.props.data.answerCount - 3, " posts skipped"
+                    );
+            }
             
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
-                    React.createElement(Answer, {data: answer, key: answer.id})
+                    React.createElement(Post, {data: answer, key: answer.id})
                 );
             });
         }
         
         return (
             React.createElement("div", {className: "thread"}, 
-                React.createElement(Answer, {data: this.props.data, op: "true"}), 
-                React.createElement("div", {className: "meta-data"}, skippedAnswers, " posts skipped"), 
+                React.createElement(Post, {data: this.props.data, op: "true"}), 
+                skippedAnswers, 
                 answers
             )
         );
     }
 });
 
-var Answer = React.createClass({displayName: 'Answer',
+var Post = React.createClass({displayName: 'Post',
     getInitialState: function() {
         return {
             op: false,

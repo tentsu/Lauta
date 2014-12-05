@@ -26,6 +26,7 @@ var Opened = React.createClass({
         return (
             <div className="threadBox">
             <a href="/"><h1>Lauta</h1></a>
+            <AnswerThreadForm id={this.props.id}/>
             <Thread data={this.props} />
             </div>
         );
@@ -35,21 +36,79 @@ var Opened = React.createClass({
 
 
 var NewThread = React.createClass({
-    createThread: function(e) {
+    sendForm: function(e, data) {
         e.preventDefault();
+        e.stopPropagation(); 
+                
+        var file = document.getElementById('postImage').files[0];
+        
+        var data = new FormData();
+        data.append("img", file);
         
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
+            message: this.refs.message.getDOMNode().value.trim(),
+            img: file
         };
+        
+        console.log(data)
+        
+        
+        if (post.title == "") {
+            post.title = "ASD";
+        }
+        if (post.message == "") {
+            post.message = "DERP";
+        }
+        
         
         $.ajax({
             url: "/api/posts",
             dataType: 'json',
             type: "POST",
-            data: post,
+            data: data,
+            processData: false,
+            contentType: false,
             success: function(data) {
                 window.location.replace("/"+data);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+//        
+    },
+    render: function() {
+        return (
+            <div className="threadForm new">
+                <form name="newThread" encType="multipart/form-data" onSubmit={this.sendForm}>
+                    <strong>New thread</strong>
+                    <input type="text" placeholder="Thread title" ref="title"/>
+                    <textarea ref="message" placeholder="Thread message"></textarea>
+                    <input type="file" name="displayImage" id="postImage" accept="image/*" ref="image"/>
+                    <button type="submit">Create thread</button>
+                </form>
+            </div>
+        );
+    }
+});
+
+
+var AnswerThreadForm = React.createClass({
+    sendForm: function(e) {
+        e.preventDefault();
+        
+        var post = {
+            message: this.refs.message.getDOMNode().value.trim()
+        };
+        
+        $.ajax({
+            url: "/api/posts/"+this.props.id,
+            dataType: 'json',
+            type: "PUT",
+            data: post,
+            success: function(data) {
+                window.location.replace("/"+this.props.id);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -58,13 +117,12 @@ var NewThread = React.createClass({
     },
     render: function() {
         return (
-            <div className="newThread">
-                <form name="newThread" onSubmit={this.createThread}>
-                    <strong>New thread</strong>
-                    <input type="text" placeholder="Thread title" ref="title"/>
+            <div className="threadForm answer">
+                <form name="answerThreadForm" onSubmit={this.sendForm}>
+                    <strong>Answer thread</strong>
                     <textarea ref="message" placeholder="Thread message"></textarea>
                     <input type="file" />
-                    <button type="submit">Create thread</button>
+                    <button type="submit">Answer thread</button>
                 </form>
             </div>
         );
@@ -90,31 +148,36 @@ var ThreadList = React.createClass({
 
 var Thread = React.createClass({
     render: function() {
-        var skippedAnswers = 0;
+        var skippedAnswers = <div/>;
         
         if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
             this.props.data.answers = [];
         } else {
-            skippedAnswers = this.props.data.answerCount - 3;
+            if (this.props.data.answers.length <= 3) {
+                skippedAnswers = 
+                    <div className="meta-data">
+                        {this.props.data.answerCount - 3} posts skipped
+                    </div>;
+            }
             
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
-                    <Answer data={answer} key={answer.id} />
+                    <Post data={answer} key={answer.id} />
                 );
             });
         }
         
         return (
             <div className="thread">
-                <Answer data={this.props.data} op="true"/>
-                <div className="meta-data">{skippedAnswers} posts skipped</div>
+                <Post data={this.props.data} op="true"/>
+                {skippedAnswers}
                 {answers}
             </div>
         );
     }
 });
 
-var Answer = React.createClass({
+var Post = React.createClass({
     getInitialState: function() {
         return {
             op: false,

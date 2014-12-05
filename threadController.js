@@ -1,5 +1,7 @@
 function ThreadController(db) {
     
+    var fs = require('fs');
+    
     var threads = db.collection("threads");
     
     /*
@@ -41,16 +43,26 @@ function ThreadController(db) {
     /*
      * Add post to thread
      */
-    this.addPost = function(req, res, next) {
+    this.answerThread = function(req, res, next) {
         "use strict";
 
-        console.log("new post to thread")
-//        console.log(req)
+        console.log("answer thread")
+        
+        req.body.id = createID(8);
+        req.body.time = new Date();
+        req.body.author = createID(10);
+//        req.body.img = "http://placehold.it/100x100";
+        
+        console.log(req.body)
 
-        threads.update({id:id}, {'$push': {'answers': answer}}, function(err, asd) {
+        threads.update({id: parseInt(req.params.id)}, {'$push': {'answers': req.body}}, function(err, asd) {
             "use strict";
+            
+            console.log(asd)
 
             if (err) return callback(err, null);
+            
+            res.send(true)
 
     //        callback(err, numModified);
         });
@@ -58,22 +70,31 @@ function ThreadController(db) {
     
     
     /*
-     * Add post to thread
+     * Create new thread
      */
-    this.addNewThread = function(req, res, next) {
+    this.createNewThread = function(req, res, next) {
         "use strict";
 
         console.log("new thread")
-        console.log(req.body)
         
-        req.body.id = parseInt(createThreadId());
+        console.log(req.files)
+        
+        req.body.id = createID(8);
         req.body.time = new Date();
         req.body.answers = [];
         req.body.author = "addsa";
-        req.body.img = "http://placehold.it/300x100";
-
+//        req.body.img = "http://placehold.it/300x100";
+        
         threads.insert(req.body, function(err, inserted) {
             "use strict";
+            
+            fs.readFile(req.files.displayImage.path, function (err, data) {
+                var newPath = __dirname + "/uploads/uploadedFileName";
+                fs.writeFile(newPath, data, function (err) {
+                    res.redirect("back");
+                });
+            });
+            
             
             console.log(inserted)
             res.setHeader("Access-Control-Allow-Origin", "*");
@@ -84,10 +105,10 @@ function ThreadController(db) {
         });
     }
     
-    function createThreadId() {
+    function createID(length) {
         var arr = "";
         
-        for (var i = 0; i < 8; i++ ) {
+        for (var i = 0; i < length; i++ ) {
             arr += getRandomInt(0, 9).toString();
         }
         
@@ -95,7 +116,7 @@ function ThreadController(db) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         
-        return arr;
+        return parseInt(arr);
     }
 }
 
