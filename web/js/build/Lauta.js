@@ -8,6 +8,7 @@ var Lauta = React.createClass({displayName: 'Lauta',
     render: function() {
 //        console.log("All threads")
 //        console.log(this.props)
+        
         return (
             React.createElement("div", {className: "threadBox"}, 
                 React.createElement("h1", null, "Lauta"), 
