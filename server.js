@@ -12,7 +12,7 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
     app.use('/', express.static(path.join(__dirname, '')));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
-    app.use('/partials', express.static(__dirname + '/partials'));
+    app.use('/web/partials', express.static(__dirname + '/web/partials'));
     
     routes(app, db);
         

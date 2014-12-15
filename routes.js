@@ -13,6 +13,6 @@ module.exports = function(app, db) {
     
     app.get('*', function(req, res, next) {
         // Just send the index.html for other files to support HTML5Mode
-        res.sendFile('index.html', { root: __dirname });
+        res.sendFile('web/index.html', { root: __dirname });
     });
 }

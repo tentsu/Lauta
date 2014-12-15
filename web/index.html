@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="Lauta">
+<head>
+    <title>Lauta</title>
+    <link rel="stylesheet" href="web/css/base.css" />
+    
+</head>
+<body>
+    <div id="content" ng-view>
+    </div>
+
+    
+    <script src="http://fb.me/react-with-addons-0.12.1.js"></script>
+<!--    <script src="http://fb.me/react-0.12.1.js"></script>-->
+<!--    <script src="lib/react.min.js"></script>-->
+    <script src="web/js/lib/angular.min.js"></script>
+    <script src="web/js/lib/angular-resource.min.js"></script>
+    <script src="web/js/lib/angular-route.min.js"></script>
+    <script src="web/js/lib/ngReact.min.js"></script>
+    <script src="web/js/lib/jquery-2.1.1.min.js"></script>
+    
+    <script src="web/js/app.js"></script>
+    <script src="web/js/ThreadFactory-factory.js"></script>
+    <script src="web/build/threads.js"></script>
+    
+    
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+</body>
+</html>
