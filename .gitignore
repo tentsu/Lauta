@@ -37,7 +37,7 @@ ehthumbs.db
 Thumbs.db
 
 .sass-cache
-*.css.map
+*.scss
 
 node_modules
 .brackets.json
