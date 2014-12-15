@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Lauta">
+<html ng-app="Board">
 <head>
     <title>Lauta</title>
     <link rel="stylesheet" href="web/css/base.css" />
@@ -9,10 +9,7 @@
     <div id="content" ng-view>
     </div>
 
-    
-    <script src="http://fb.me/react-with-addons-0.12.1.js"></script>
-<!--    <script src="http://fb.me/react-0.12.1.js"></script>-->
-<!--    <script src="lib/react.min.js"></script>-->
+    <script src="web/js/lib/react-with-addons.min.js"></script>
     <script src="web/js/lib/angular.min.js"></script>
     <script src="web/js/lib/angular-resource.min.js"></script>
     <script src="web/js/lib/angular-route.min.js"></script>
@@ -20,12 +17,22 @@
     <script src="web/js/lib/jquery-2.1.1.min.js"></script>
     
     <script src="web/js/app.js"></script>
-    <script src="web/js/ThreadFactory-factory.js"></script>
-    <script src="web/build/threads.js"></script>
+    <script src="web/js/Main-controller.js"></script>
+    <script src="web/js/Thread-controller.js"></script>
+    <script src="web/js/Thread-factory.js"></script>
+        
+    <script src="web/js/build/Lauta.js"></script>
+    <script src="web/js/build/ThreadList.js"></script>
+    <script src="web/js/build/OpenedThread.js"></script>
+    <script src="web/js/build/Thread.js"></script>
+    <script src="web/js/build/Post.js"></script>
+    <script src="web/js/build/NewThreadForm.js"></script>
+    <script src="web/js/build/AnswerThreadForm.js"></script>
     
     
     <script type="text/javascript">
         angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
+    
 </body>
 </html>
