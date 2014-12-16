@@ -12,11 +12,14 @@ But hey, I still love "Fixed things." commits. :P
 
 ## TODO
 
-* Image upload when creating new thread
+* <del>Image upload when creating new thread</del>
 * Image upload when adding post to thread
 * When specific thread opened, client pulls new posts every 5 sec or so
 * Parsing posts' date
-* Save author somehow
+* Upload restrictions
+* Identify author somehow (IP?)
+* Deleting threads (by owner only?)
 * If no title, show beginning of the post as title
 * Anchor links to posts
+* Commenting, commenting...
 * Styling. Yes, very much styling.
