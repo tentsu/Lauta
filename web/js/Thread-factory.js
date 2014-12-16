@@ -65,10 +65,26 @@ function ThreadFactory($http, $q, Threads) {
         
         return d.promise;
     }
-
+    
+    /*
+     *
+     */
+    function addThread(post) {
+        var d = $q.defer();
+        Threads.save(post, function(response) {
+            d.resolve(response);
+        }, function (response) {
+            console.log(response)
+        });
+        
+        return d.promise;
+    }
+    
+    
     return {
         getThreads: getThreads,
-        getThread: getThread
+        getThread: getThread,
+        addThread: addThread
     };
 }
 
@@ -81,7 +97,7 @@ function ThreadResource($resource) {
     return $resource("/api/posts/:id",
         {id: "@id"},
         { 'get':    {method:'GET'},
-          'save':   {method:'POST'},
+          'save':   {method:'POST', isArray: false},
           'query':  {method:'GET', isArray:true},
           'remove': {method:'DELETE'},
           'delete': {method:'DELETE'}

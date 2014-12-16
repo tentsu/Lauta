@@ -4,11 +4,6 @@ var NewThreadForm = React.createClass({
     sendForm: function(e, data) {
         e.preventDefault();
         e.stopPropagation(); 
-                
-//        var file = document.getElementById('postImage').files[0];
-//        
-//        var data = new FormData();
-//        data.append("img", file);
         
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
@@ -23,20 +18,7 @@ var NewThreadForm = React.createClass({
             post.message = "DERP";
         }
         
-        
-        $.ajax({
-            url: "/api/posts",
-            dataType: 'json',
-            type: "POST",
-            data: post,
-            success: function(data) {
-                window.location.replace("/"+data);
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
-//        
+        this.props.scope.addThread(post);
     },
     render: function() {
         return (

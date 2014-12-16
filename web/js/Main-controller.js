@@ -22,12 +22,16 @@ function MainCtrl ($scope, $http, $interval, ThreadFactory) {
     
     $scope.threads = ThreadFactory.getThreads();
     $scope.threads.then( function(data) {
-        console.log(data)
         $scope.threads = data;
     })
     
-    $scope.test = function() {
+    $scope.addThread = function(post) {
         console.log("This is a test function")
+        
+        ThreadFactory.addThread(post)
+            .then( function(data) {
+                window.location.replace("/"+data.id);
+            });
     };
 }
     

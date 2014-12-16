@@ -99,7 +99,9 @@ function ThreadController(db) {
             console.log(inserted)
             res.setHeader("Access-Control-Allow-Origin", "*");
             
-            res.send((req.body.id).toString());
+            console.log((req.body.id).toString())
+            
+            res.send({ id: req.body.id});
 
     //        callback(err, numModified);
         });

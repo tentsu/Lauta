@@ -13,7 +13,7 @@ var Lauta = React.createClass({
             <div className="threadBox">
                 <h1>Lauta</h1>
                 <div className="info">{this.props.threads.length} threads in this board!</div>
-                <NewThreadForm/>
+                <NewThreadForm scope={this.props.scope}/>
                 <ThreadList data={this.props.threads}/>
             </div>
         );
