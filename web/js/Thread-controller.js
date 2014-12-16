@@ -13,15 +13,18 @@ ThreadCtrl.$inject = ['$scope', '$interval', '$routeParams', 'ThreadFactory'];
 function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory) {
     $scope.thread = {};
 
-    $scope.thread = ThreadFactory.getThread($routeParams.threadId);
-    $scope.thread.then( function(data) {
-//        console.log(data)
-        $scope.thread = data;
-    })
+    ThreadFactory.getThread($routeParams.threadId)
+        .then( function(data) {
+            $scope.thread = data;
+        })
     
-//    getThreads();
-
 //    $interval( getThreads, 5000 );
+    
+    $scope.addAnswer = function(id, post) {
+        ThreadFactory.addAnswer(id, post).then(function(data) {
+            window.location.replace("/"+data.id);
+        });
+    };
 }
 
 })();

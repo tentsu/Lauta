@@ -93,10 +93,38 @@ function ThreadFactory($http, $q, Threads, $upload) {
         return d.promise;
     }
     
+    
+    /*
+     * @name addAnswer
+     * @desc Add answer post to database
+     * @param {post} Post's details
+     * @param {post.message} Post's message
+     * @param {post.img} Post's image
+     * @return {Promise} Object with inserted thread's id
+     */
+    function addAnswer(id, post) {
+        var d = $q.defer();
+        
+        console.log(post)
+        
+        $upload.upload({
+            url: '/api/posts/',
+            method: 'PUT',
+            file: post.img,
+            data: post,
+            fileFormDataName: 'myFile'
+        }).success(function(data, status, headers, config) {
+            d.resolve(data);
+        });
+        
+        return d.promise;
+    }
+    
     return {
         getThreads: getThreads,
         getThread: getThread,
-        addThread: addThread
+        addThread: addThread,
+        addAnswer: addAnswer
     };
 }
 

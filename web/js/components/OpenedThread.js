@@ -8,7 +8,7 @@ window.OpenedThread = React.createClass({
         return (
             <div className="threadBox">
                 <a href="/"><h1>Lauta</h1></a>
-                <AnswerThreadForm id={this.props.id}/>
+                <AnswerThreadForm id={this.props.thread.id} scope={this.props.scope}/>
                 <Thread data={this.props.thread} />
             </div>
         );

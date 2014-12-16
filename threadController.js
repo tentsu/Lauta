@@ -42,33 +42,6 @@ function ThreadController(db) {
     
     
     /*
-     * Add post to thread
-     */
-    this.answerThread = function(req, res, next) {
-        "use strict";
-
-        console.log("answer thread")
-        
-        req.body.id = createID(8);
-        req.body.time = new Date();
-        req.body.author = createID(10);
-//        req.body.img = "http://placehold.it/100x100";
-        
-        console.log(req.body)
-
-        threads.update({id: parseInt(req.params.id)}, {'$push': {'answers': req.body}}, function(err, added) {
-            "use strict";
-            
-            console.log(added)
-
-            if (err) return callback(err, null);
-            
-            res.send(true)
-        });
-    }
-    
-    
-    /*
      * Create new thread
      */
     this.createNewThread = function(req, res, next) {
@@ -100,6 +73,48 @@ function ThreadController(db) {
         });
     }
     
+        
+    /*
+     * Add post to thread
+     */
+    this.answerThread = function(req, res, next) {
+        "use strict";
+
+        console.log("answer thread")
+        
+        var id = parseInt(req.body.threadId);
+        
+        var post = {
+            id: createID(8),
+            time: new Date(),
+            author: createID(10),
+            message: req.body.message
+        }
+        
+        if (req.files.myFile) {
+            post.img = "images/" + req.files.myFile.originalFilename;
+        }
+
+        threads.update({id: id}, {'$push': {'answers': post}}, function(err, added) {
+            "use strict";
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            
+            if (req.files.myFile) {
+                fs.readFile(req.files.myFile.path, function (err, data) {
+                    var newPath = post.img;
+                    fs.writeFile(newPath, data, function (err) {
+                        console.log("File uploaded");
+                    });
+                });
+            }
+
+            res.send({ id: id});
+        });
+    }
+    
+    /*
+     * Create random number
+     */
     function createID(length) {
         var arr = "";
         

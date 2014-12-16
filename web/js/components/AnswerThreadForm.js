@@ -3,23 +3,15 @@
 var AnswerThreadForm = React.createClass({
     sendForm: function(e) {
         e.preventDefault();
+        e.stopPropagation();
         
         var post = {
-            message: this.refs.message.getDOMNode().value.trim()
+            threadId: this.props.id,
+            message: this.refs.message.getDOMNode().value.trim(),
+            img: document.getElementById("postImage").files[0]
         };
         
-        $.ajax({
-            url: "/api/posts/"+this.props.id,
-            dataType: 'json',
-            type: "PUT",
-            data: post,
-            success: function(data) {
-                window.location.replace("/"+this.props.id);
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+        this.props.scope.addAnswer(this.props.id, post);
     },
     render: function() {
         return (
@@ -27,7 +19,8 @@ var AnswerThreadForm = React.createClass({
                 <form name="answerThreadForm" onSubmit={this.sendForm}>
                     <strong>Answer thread</strong>
                     <textarea ref="message" placeholder="Thread message"></textarea>
-                    <input type="file" />
+            
+                    <input type="file" name="displayImage" id="postImage" accept="image/*" ref="image"/>
                     <button type="submit">Answer thread</button>
                 </form>
             </div>
