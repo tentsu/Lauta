@@ -13,7 +13,7 @@ But hey, I still love "Fixed things." commits. :P
 ## To-do list
 
 * <del>Image upload when creating new thread</del>
-* Image upload when adding post to thread
+* <del>Image upload when adding post to thread</del>
 * When specific thread opened, client pulls new posts every 5 sec or so
 * Ordering threads by activity
 * Parsing posts' date
@@ -22,6 +22,8 @@ But hey, I still love "Fixed things." commits. :P
 * Deleting threads (by owner only?)
 * If no title, show beginning of the post as title
 * Anchor links to posts
+* Error handling
+* "Quoting" post
 * Get rid of the only template file (embed it to the app.js)?
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
-* Styling. Yes, very much styling
+* CSS. Yes, very much CSS
