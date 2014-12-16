@@ -46,30 +46,35 @@ function ThreadController(db) {
      */
     this.createNewThread = function(req, res, next) {
         'use strict';
-
-        console.log("new thread")
         
-        req.body.id = createID(8);
-        req.body.time = new Date();
-        req.body.answers = [];
-        req.body.author = "addsa"; // TODO: ip ??
-        req.body.img = "images/" + req.files.myFile.originalFilename;
+        var post = {
+            id: createID(8),
+            time: new Date(),
+            author: createID(10),
+            title: req.body.title,
+            message: req.body.message,
+            answers: []
+        }
         
-        threads.insert(req.body, function(err, inserted) {
-            "use strict";
+        if (req.files.myFile) {
+            post.img = "images/" + req.files.myFile.originalFilename;
+        }
+        
+        threads.insert(post, function(err, inserted) {
+            'use strict';
             
-            console.log("inserted:")
-            console.log(inserted)
             res.setHeader("Access-Control-Allow-Origin", "*");
             
-            fs.readFile(req.files.myFile.path, function (err, data) {
-                var newPath = req.body.img;
-                fs.writeFile(newPath, data, function (err) {
-                    console.log("File uploaded");
+            if (req.files.myFile) {
+                fs.readFile(req.files.myFile.path, function (err, data) {
+                    var newPath = post.img;
+                    fs.writeFile(newPath, data, function (err) {
+                        console.log("File uploaded");
+                    });
                 });
-            });
+            }
             
-            res.send({ id: req.body.id});
+            res.send({ id: post.id});
         });
     }
     
@@ -78,7 +83,7 @@ function ThreadController(db) {
      * Add post to thread
      */
     this.answerThread = function(req, res, next) {
-        "use strict";
+        'use strict';
 
         console.log("answer thread")
         
