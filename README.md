@@ -15,11 +15,13 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Image upload when creating new thread</del>
 * Image upload when adding post to thread
 * When specific thread opened, client pulls new posts every 5 sec or so
+* Ordering threads by activity
 * Parsing posts' date
 * Upload restrictions
 * Identify author somehow (IP?)
 * Deleting threads (by owner only?)
 * If no title, show beginning of the post as title
 * Anchor links to posts
+* Get rid of the only template file and embed it to the app.js?
 * Commenting, commenting...
-* Styling. Yes, very much styling.
+* Styling. Yes, very much styling
