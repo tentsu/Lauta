@@ -10,7 +10,7 @@ This project also works as my place to really learn gitting right, e.g. clear co
 But hey, I still love "Fixed things." commits. :P
 
 
-## TODO
+## To-do list
 
 * <del>Image upload when creating new thread</del>
 * Image upload when adding post to thread
@@ -22,6 +22,6 @@ But hey, I still love "Fixed things." commits. :P
 * Deleting threads (by owner only?)
 * If no title, show beginning of the post as title
 * Anchor links to posts
-* Get rid of the only template file and embed it to the app.js?
-* Commenting, commenting...
+* Get rid of the only template file (embed it to the app.js)?
+* <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * Styling. Yes, very much styling
