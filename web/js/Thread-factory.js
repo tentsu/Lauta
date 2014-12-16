@@ -9,7 +9,7 @@ angular.module('Thread')
     .factory('Threads', ThreadResource)
     .factory('ThreadFactory', ThreadFactory);
     
-ThreadFactory.$inject = ['$http', '$q', 'Threads']; 
+ThreadFactory.$inject = ['$http', '$q', 'Threads', '$upload']; 
 ThreadResource.$inject = ['$resource'];
 
 /*
@@ -17,7 +17,7 @@ ThreadResource.$inject = ['$resource'];
  * @desc Actual controller for frontpage of the app.
  * @memberOf Factories
  */
-function ThreadFactory($http, $q, Threads) {
+function ThreadFactory($http, $q, Threads, $upload) {
     function getThreads() {
         console.log("Loading messages...");
 
@@ -49,7 +49,7 @@ function ThreadFactory($http, $q, Threads) {
      * @name getThread
      * @desc Simple resource class to get thread data from DB through HTTP.
      * @param {Number} id ID of the thread to get
-     * @return {$q.promise}
+     * @return {Promise}
      * @memberOf Factories.ThreadFactory
      */
     function getThread(id) {
@@ -67,19 +67,31 @@ function ThreadFactory($http, $q, Threads) {
     }
     
     /*
-     *
+     * @name addThread
+     * @desc Add thread to database
+     * @param {post} Post's details
+     * @param {post.title} Post's title
+     * @param {post.message} Post's message
+     * @param {post.img} Post's image
+     * @return {Promise} Object with inserted thread's id
      */
     function addThread(post) {
+        var files = document.getElementById("postImage");
+        
         var d = $q.defer();
-        Threads.save(post, function(response) {
-            d.resolve(response);
-        }, function (response) {
-            console.log(response)
+        
+        $upload.upload({
+            url: '/api/posts',
+            method: 'POST',
+            file: post.img,
+            data: post,
+            fileFormDataName: 'myFile'
+        }).success(function(data, status, headers, config) {
+            d.resolve(data);
         });
         
         return d.promise;
     }
-    
     
     return {
         getThreads: getThreads,
@@ -94,10 +106,35 @@ function ThreadFactory($http, $q, Threads) {
  * @desc Simple resource class to get thread data from DB through HTTP.
  */
 function ThreadResource($resource) {
+    var transformRequest = function(data) {
+    if (data === undefined)
+      return data;
+
+    var fd = new FormData();
+    angular.forEach(data, function(value, key) {
+      if (value instanceof FileList) {
+        if (value.length == 1) {
+          fd.append(key, value[0]);
+        } else {
+          angular.forEach(value, function(file, index) {
+            fd.append(key + '_' + index, file);
+          });
+        }
+      } else {
+        fd.append(key, value);
+      }
+    });
+
+    return fd;
+  }
+    
     return $resource("/api/posts/:id",
         {id: "@id"},
         { 'get':    {method:'GET'},
-          'save':   {method:'POST', isArray: false},
+          'save':   {
+                method:'POST',
+                transformRequest: transformRequest, 
+                header: {'Content-type': undefined}},
           'query':  {method:'GET', isArray:true},
           'remove': {method:'DELETE'},
           'delete': {method:'DELETE'}

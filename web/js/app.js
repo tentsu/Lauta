@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-angular.module('Board', ["Main", "Thread", "react", "ngRoute", "ngResource"])
+angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'angularFileUpload'])
 .directive('lauta', function( reactDirective ) {
     return {
         link: function(scope, element) {

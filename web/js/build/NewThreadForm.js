@@ -3,12 +3,12 @@
 var NewThreadForm = React.createClass({displayName: 'NewThreadForm',
     sendForm: function(e, data) {
         e.preventDefault();
-        e.stopPropagation(); 
+        e.stopPropagation();
         
         var post = {
             title: this.refs.title.getDOMNode().value.trim(),
-            message: this.refs.message.getDOMNode().value.trim()
-//            img: file
+            message: this.refs.message.getDOMNode().value.trim(),
+            img: document.getElementById("postImage").files[0]
         };
         
         if (post.title == "") {
@@ -27,6 +27,7 @@ var NewThreadForm = React.createClass({displayName: 'NewThreadForm',
                     React.createElement("strong", null, "New thread"), 
                     React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
+                    
                     React.createElement("input", {type: "file", name: "displayImage", id: "postImage", accept: "image/*", ref: "image"}), 
                     React.createElement("button", {type: "submit"}, "Create thread")
                 )
@@ -34,3 +35,4 @@ var NewThreadForm = React.createClass({displayName: 'NewThreadForm',
         );
     }
 });
+

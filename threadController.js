@@ -1,5 +1,6 @@
 function ThreadController(db) {
     
+    var http = require('http');
     var fs = require('fs');
     
     var threads = db.collection("threads");
@@ -63,8 +64,6 @@ function ThreadController(db) {
             if (err) return callback(err, null);
             
             res.send(true)
-
-    //        callback(err, numModified);
         });
     }
     
@@ -73,37 +72,31 @@ function ThreadController(db) {
      * Create new thread
      */
     this.createNewThread = function(req, res, next) {
-        "use strict";
+        'use strict';
 
         console.log("new thread")
-        
-        console.log(req.body)
         
         req.body.id = createID(8);
         req.body.time = new Date();
         req.body.answers = [];
-        req.body.author = "addsa";
-        req.body.img = "http://placehold.it/300x100";
+        req.body.author = "addsa"; // TODO: ip ??
+        req.body.img = "images/" + req.files.myFile.originalFilename;
         
         threads.insert(req.body, function(err, inserted) {
             "use strict";
             
-//            fs.readFile(req.files.displayImage.path, function (err, data) {
-//                var newPath = __dirname + "/uploads/uploadedFileName";
-//                fs.writeFile(newPath, data, function (err) {
-//                    res.redirect("back");
-//                });
-//            });
-            
-            
+            console.log("inserted:")
             console.log(inserted)
             res.setHeader("Access-Control-Allow-Origin", "*");
             
-            console.log((req.body.id).toString())
+            fs.readFile(req.files.myFile.path, function (err, data) {
+                var newPath = req.body.img;
+                fs.writeFile(newPath, data, function (err) {
+                    console.log("File uploaded");
+                });
+            });
             
             res.send({ id: req.body.id});
-
-    //        callback(err, numModified);
         });
     }
     

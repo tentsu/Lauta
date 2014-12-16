@@ -8,6 +8,15 @@
   'use strict';
     
 angular.module('Main')
+    .directive("asd", function(){
+        return {
+            template: "<div>MOI</h1>",
+            link: function (scope, el) {
+                console.log("asd directive");
+            }
+        }
+
+    })
     .controller('MainCtrl', MainCtrl);
     
 MainCtrl.$inject = ['$scope', '$http', '$interval', 'ThreadFactory'];
@@ -25,11 +34,17 @@ function MainCtrl ($scope, $http, $interval, ThreadFactory) {
         $scope.threads = data;
     })
     
+    /*
+     * @name addThread
+     * @desc Calls factory to add thread to database
+     * @param {post} Post's details
+     * @param {post.title} Post's title
+     * @param {post.message} Post's message
+     * @param {post.img} Post's image
+     */
     $scope.addThread = function(post) {
-        console.log("This is a test function")
-        
         ThreadFactory.addThread(post)
-            .then( function(data) {
+            .then(function(data) {
                 window.location.replace("/"+data.id);
             });
     };

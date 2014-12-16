@@ -7,7 +7,12 @@ module.exports = function(app, db) {
     app.get ("/api/posts", ThreadCtrl.findAllThreads);
     app.get ("/api/posts/:id", ThreadCtrl.findThread);
     
-    app.post("/api/posts", ThreadCtrl.createNewThread);
+    
+    
+    var multipart = require('connect-multiparty');
+    var multipartMiddleware = multipart();
+    
+    app.post("/api/posts", multipartMiddleware, ThreadCtrl.createNewThread);
     
     app.put("/api/posts/:id", ThreadCtrl.answerThread);
     
