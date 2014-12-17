@@ -22,13 +22,13 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
 })
 .directive('opened', function( reactDirective ) {
     return {
-        link: function(scope, element) {
+        link: function(scope, element, attrs) {
             scope.$watch('thread', function() {
                 React.renderComponent(window.OpenedThread({
                     scope: scope,
                     thread: scope.thread
                 }), document.getElementById('react'));
-            });
+            }, true);
         }
     }
 })

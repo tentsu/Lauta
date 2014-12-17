@@ -18,6 +18,10 @@ ThreadResource.$inject = ['$resource'];
  * @memberOf Factories
  */
 function ThreadFactory($http, $q, Threads, $upload) {
+    
+    var latest = new Date();
+    latest.setHours(latest.getHours() - 1);
+    
     function getThreads() {
         console.log("Loading messages...");
 
@@ -53,10 +57,16 @@ function ThreadFactory($http, $q, Threads, $upload) {
      * @memberOf Factories.ThreadFactory
      */
     function getThread(id) {
-        console.log("Loading messages...");
-
+        console.log("Fetching thread...");
+        
         var d = $q.defer();
         Threads.get({id: id}, function(response) {
+            
+//            for (var i = 0; i < 5; i++) {
+//            
+//            }
+            
+            
             response.answerCount = response.answers.length;
             d.resolve(response);
         }, function (response) {
@@ -65,6 +75,27 @@ function ThreadFactory($http, $q, Threads, $upload) {
         
         return d.promise;
     }
+    
+    
+    /*
+     * @name getNewAnswers
+     * @desc Gets new answers that have come to a thread after some time
+     * @param {specs} Specification to which answers to get
+     * @param {specs.id} Thread id
+     * @param {specs.time} Posts posted after this timestamp are fetched
+     * @return {Promise} Array of answers
+     */
+    function getNewAnswers(specs) {
+        var d = $q.defer();
+        Threads.query(specs, function(response) {
+            d.resolve(response);
+        }, function (response) {
+            console.log(response)
+        });
+        
+        return d.promise;
+    }
+    
     
     /*
      * @name addThread
@@ -122,7 +153,8 @@ function ThreadFactory($http, $q, Threads, $upload) {
         getThreads: getThreads,
         getThread: getThread,
         addThread: addThread,
-        addAnswer: addAnswer
+        addAnswer: addAnswer,
+        getNewAnswers: getNewAnswers
     };
 }
 
@@ -154,8 +186,8 @@ function ThreadResource($resource) {
     return fd;
   }
     
-    return $resource("/api/posts/:id",
-        {id: "@id"},
+    return $resource("/api/posts/:id/:time",
+        {id: "@id", time: "@time"},
         { 'get':    {method:'GET'},
           'save':   {
                 method:'POST',

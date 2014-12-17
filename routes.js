@@ -8,6 +8,7 @@ module.exports = function(app, db) {
     var multipartMiddleware = multipart();
     
     app.get ("/api/posts", ThreadCtrl.findAllThreads);
+    app.get ("/api/posts/:id/:time", ThreadCtrl.findNewAnswers);
     app.get ("/api/posts/:id", ThreadCtrl.findThread);
     
     app.post("/api/posts", multipartMiddleware, ThreadCtrl.createNewThread);

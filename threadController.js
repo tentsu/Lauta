@@ -16,7 +16,7 @@ function ThreadController(db) {
         threads.findOne({'id': parseInt(req.params.id)}, function(err, thread) {
             "use strict";
 
-            console.log(thread);
+//            console.log(thread);
             return res.json(thread)
         });
 
@@ -35,6 +35,43 @@ function ThreadController(db) {
             "use strict";
 
             console.log("Found " + items.length + " posts");
+
+            return res.json(items)
+        });
+    }
+    
+    
+    /*
+     * Find new answers to a thread
+     */
+    this.findNewAnswers = function(req, res, next) {
+        "use strict";
+        
+        threads.aggregate([
+            {$unwind: "$answers"},
+            {$match: {
+                "id": parseInt(req.params.id),
+                "answers.time": {
+                    "$gt": new Date((new Date(req.params.time).toISOString()))
+                }
+            }},
+            {$project: {
+                _id: 0,
+                "id": "$answers.id",
+                "time": "$answers.time",
+                "author": "$answers.author",
+                "message": "$answers.message",
+                "img": "$answers.img"
+            }},
+            {$sort: {
+                "time" : 1
+            }}
+        ], function(err, items) {
+            "use strict";
+
+            console.log("Found " + items.length + " new answers");
+            
+            console.log(items)
 
             return res.json(items)
         });
@@ -89,18 +126,16 @@ function ThreadController(db) {
     
         
     /*
-     * Add post to thread
+     * Answer thread
      */
     this.answerThread = function(req, res, next) {
         'use strict';
 
         console.log("answer thread")
         
-        var id = parseInt(req.body.threadId);
-        
         var post = {
             id: createID(8),
-            time: new Date(),
+            time: new Date(new Date().setMilliseconds(0)),
             author: createID(10),
             message: req.body.message
         }
@@ -109,7 +144,7 @@ function ThreadController(db) {
             post.img = "images/" + req.files.myFile.originalFilename;
         }
         
-        var doc = { id: id };
+        var doc = { id: parseInt(req.body.threadId) };
         
         var operations = {
             '$set': {
@@ -131,7 +166,7 @@ function ThreadController(db) {
                 });
             }
 
-            res.send({ id: id});
+            res.send({ id: doc.id});
         });
     }
     
