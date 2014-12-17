@@ -7,6 +7,12 @@ var Post = React.createClass({displayName: 'Post',
             full: false
         };
     },
+    parseTime: function(time) {
+        var tm = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+        var dt = time.getDate() + "." + time.getMonth() + "." + time.getFullYear();
+        
+        return (dt + " " + tm);
+    },
     imageClick: function(event) {
         if (event.button == 1 || event.button == 2) {
             return;
@@ -18,6 +24,8 @@ var Post = React.createClass({displayName: 'Post',
     render: function() {
         var data = this.props.data;
 //        console.log(this.props)
+        
+        var time = this.parseTime(new Date(data.time));
         
         var cx = React.addons.classSet;
         var imageSize = cx({
@@ -46,7 +54,7 @@ var Post = React.createClass({displayName: 'Post',
                     data.author
                 ), 
                 React.createElement("div", {className: "time"}, 
-                    data.time
+                    time
                 ), 
                 React.createElement("div", {className: "message"}, 
                     data.message

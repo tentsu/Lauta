@@ -76,8 +76,6 @@ function ThreadFactory($http, $q, Threads, $upload) {
      * @return {Promise} Object with inserted thread's id
      */
     function addThread(post) {
-        var files = document.getElementById("postImage");
-        
         var d = $q.defer();
         
         $upload.upload({
