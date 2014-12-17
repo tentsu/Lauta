@@ -31,7 +31,7 @@ function ThreadController(db) {
         
         console.log("all threads")
         
-        threads.find().sort('date', -1).toArray(function(err, items) {
+        threads.find().sort('updateTime', -1).toArray(function(err, items) {
             "use strict";
 
             console.log("Found " + items.length + " posts");
@@ -50,6 +50,7 @@ function ThreadController(db) {
         var post = {
             id: createID(8),
             time: new Date(),
+            updateTime: new Date(),
             author: createID(10),
             title: req.body.title,
             message: req.body.message,
@@ -99,8 +100,17 @@ function ThreadController(db) {
         if (req.files.myFile) {
             post.img = "images/" + req.files.myFile.originalFilename;
         }
+        
+        var doc = { id: id };
+        
+        var operations = {
+            '$set': {
+                'updateTime': new Date() 
+            },
+            '$push': {'answers': post}
+        };
 
-        threads.update({id: id}, {'$push': {'answers': post}}, function(err, added) {
+        threads.update(doc, operations, function(err, added) {
             "use strict";
             res.setHeader("Access-Control-Allow-Origin", "*");
             
