@@ -57,6 +57,14 @@ function ThreadController(db) {
             answers: []
         }
         
+        if (!post.title) {
+            post.title = (post.message).substring(0, 50);
+            
+            if (post.message.length > 50) {
+                post.title += "...";
+            }
+        }
+        
         if (req.files.myFile) {
             post.img = "images/" + req.files.myFile.originalFilename;
         }

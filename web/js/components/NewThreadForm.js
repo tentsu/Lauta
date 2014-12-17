@@ -11,13 +11,6 @@ var NewThreadForm = React.createClass({
             img: document.getElementById("postImage").files[0]
         };
         
-        if (post.title == "") {
-            post.title = "ASD";
-        }
-        if (post.message == "") {
-            post.message = "DERP";
-        }
-        
         this.props.scope.addThread(post);
     },
     render: function() {
