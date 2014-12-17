@@ -14,7 +14,7 @@ But hey, I still love "Fixed things." commits. :P
 
 * <del>Image upload when creating new thread</del>
 * <del>Image upload when adding post to thread</del>
-* When specific thread opened, client pulls new posts every 5 sec or so
+* <del>When specific thread opened, client pulls new posts every 5 sec or so</del>
 * <del>Ordering threads by activity</del>
 * <del>Parsing posts' date</del>
 * Upload restrictions
@@ -34,3 +34,4 @@ But hey, I still love "Fixed things." commits. :P
 ## Bugs
 
 * If thread has < 3 answers, none of them are show in the frontpage
+* Posts' timestamps need somes 0s and +1s
