@@ -18,12 +18,14 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Ordering threads by activity</del>
 * <del>Parsing posts' date</del>
 * Upload restrictions
+* Title and message validation
+* Links, bolds, etc in message parsed right
 * Identify author somehow (IP?)
 * Deleting threads (by owner only?)
-* If no title, show beginning of the post as title
+* <del>If no title, show beginning of the post as title</del>
+* "Quoting" post
 * Anchor links to posts
 * Error handling
-* "Quoting" post
 * Get rid of the only template file (embed it to the app.js)?
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
@@ -31,4 +33,4 @@ But hey, I still love "Fixed things." commits. :P
 
 ## Bugs
 
-* If post has < 3 answers, none of them are show in the frontpage
+* If thread has < 3 answers, none of them are show in the frontpage
