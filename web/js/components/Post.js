@@ -8,10 +8,20 @@ var Post = React.createClass({
         };
     },
     parseTime: function(time) {
-        var tm = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
-        var dt = time.getDate() + "." + time.getMonth() + "." + time.getFullYear();
+        var hours   = addZero(time.getHours()),
+            mins    = addZero(time.getMinutes()),
+            secs    = addZero(time.getSeconds()),
+            day     = addZero(time.getDate()),
+            mm      = addZero(time.getMonth()) + 1; // Correct month
+        
+        var tm = hours + ":" + mins + ":" + secs;
+        var dt = day + "." + mm + "." + time.getFullYear();
         
         return (dt + " " + tm);
+        
+        function addZero(str) {
+            return (str < 10) ? "0" + str : str;
+        }
     },
     imageClick: function(event) {
         if (event.button == 1 || event.button == 2) {

@@ -23,8 +23,6 @@ function ThreadFactory($http, $q, Threads, $upload) {
     latest.setHours(latest.getHours() - 1);
     
     function getThreads() {
-        console.log("Loading messages...");
-
         var d = $q.defer();
         Threads.query({}, function(response) {
             var data = response;
@@ -57,16 +55,8 @@ function ThreadFactory($http, $q, Threads, $upload) {
      * @memberOf Factories.ThreadFactory
      */
     function getThread(id) {
-        console.log("Fetching thread...");
-        
         var d = $q.defer();
         Threads.get({id: id}, function(response) {
-            
-//            for (var i = 0; i < 5; i++) {
-//            
-//            }
-            
-            
             response.answerCount = response.answers.length;
             d.resolve(response);
         }, function (response) {
@@ -165,26 +155,26 @@ function ThreadFactory($http, $q, Threads, $upload) {
  */
 function ThreadResource($resource) {
     var transformRequest = function(data) {
-    if (data === undefined)
-      return data;
+        if (data === undefined)
+          return data;
 
-    var fd = new FormData();
-    angular.forEach(data, function(value, key) {
-      if (value instanceof FileList) {
-        if (value.length == 1) {
-          fd.append(key, value[0]);
-        } else {
-          angular.forEach(value, function(file, index) {
-            fd.append(key + '_' + index, file);
-          });
-        }
-      } else {
-        fd.append(key, value);
-      }
-    });
+        var fd = new FormData();
+        angular.forEach(data, function(value, key) {
+            if (value instanceof FileList) {
+                if (value.length == 1) {
+                    fd.append(key, value[0]);
+                } else {
+                    angular.forEach(value, function(file, index) {
+                        fd.append(key + '_' + index, file);
+                    });
+                }
+            } else {
+                fd.append(key, value);
+            }
+        });
 
-    return fd;
-  }
+        return fd;
+    }
     
     return $resource("/api/posts/:id/:time",
         {id: "@id", time: "@time"},
