@@ -15,8 +15,8 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Image upload when creating new thread</del>
 * <del>Image upload when adding post to thread</del>
 * When specific thread opened, client pulls new posts every 5 sec or so
-* Ordering threads by activity
-* Parsing posts' date
+* <del>Ordering threads by activity</del>
+* <del>Parsing posts' date</del>
 * Upload restrictions
 * Identify author somehow (IP?)
 * Deleting threads (by owner only?)
@@ -27,3 +27,8 @@ But hey, I still love "Fixed things." commits. :P
 * Get rid of the only template file (embed it to the app.js)?
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
+
+
+## Bugs
+
+* If post has < 3 answers, none of them are show in the frontpage
