@@ -18,7 +18,9 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Ordering threads by activity</del>
 * <del>Parsing posts' date</del>
 * Upload restrictions
-* Title and message validation
+* <del>Title and message validation</del>
+* Error alerts
+* Adding answer doesn't reload page, just fetches new answers
 * Links, bolds, etc in message parsed right
 * Identify author somehow (IP?)
 * Deleting threads (by owner only?)
@@ -33,5 +35,5 @@ But hey, I still love "Fixed things." commits. :P
 
 ## Bugs
 
-* If thread has < 3 answers, none of them are show in the frontpage
-* Posts' timestamps need somes 0s and +1s
+* <del>If thread has less than 3 answers, none of them are show in the frontpage</del>
+* <del>Posts' timestamps need somes 0s and +1s</del>
