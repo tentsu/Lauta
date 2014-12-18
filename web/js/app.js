@@ -35,11 +35,12 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", {
-            template: '<lauta id="react" props="threads" />{{threads}}',
+            template: '<lauta id="react" />{{threads}}',
             controller: 'MainCtrl',
         })
         .when('/:threadId', {
-            templateUrl: 'web/partials/thread.html',
+//            templateUrl: 'web/partials/thread.html',
+            template: '<opened id="react"/>',
             controller: 'ThreadCtrl',
         })
         .when('/account', {
