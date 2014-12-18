@@ -8,9 +8,9 @@
 angular.module('Thread')
     .controller('ThreadCtrl', ThreadCtrl);
     
-ThreadCtrl.$inject = ['$scope', '$interval', '$routeParams', 'ThreadFactory'];
+ThreadCtrl.$inject = ['$scope', '$interval', '$routeParams', 'ThreadFactory', 'alerts'];
 
-function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory) {
+function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory, alerts) {
     // Init thread so React is happy
     $scope.thread = {};
     
@@ -35,6 +35,10 @@ function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory) {
         ThreadFactory.addPost(post).then(function(data) {
             getNewAnswers();
             clearForm();
+            
+            alerts.addAlert("success", "Answer added.", null, function () {
+                console.log("jee");
+            });
         }, function (){
             console.log("ERROR")
         });

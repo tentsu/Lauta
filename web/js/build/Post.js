@@ -60,7 +60,7 @@ var Post = React.createClass({displayName: 'Post',
         
         var titleBar = (this.props.op)
             ?   React.createElement("div", {className: "threadTitle"}, 
-                    React.createElement("a", {href: data.id}, data.title)
+                    React.createElement("h3", null, React.createElement("a", {href: data.id}, data.title))
                 )
             : "";
         

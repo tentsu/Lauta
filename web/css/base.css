@@ -37,10 +37,6 @@ header {
 .info {
   margin: 20px 0; }
 
-.threadTitle {
-  font-size: 1.5rem;
-  line-height: 2; }
-
 .post {
   margin-bottom: 20px;
   background-color: #D3D3D3;
@@ -125,5 +121,52 @@ footer {
     text-decoration: none; }
     footer a:hover {
       color: #4CB6A4; }
+
+/************
+ *
+ * ALERTS
+ *
+ ************/
+#AlertBox {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -150px;
+  width: 300px;
+  z-index: 1; }
+  #AlertBox .alertBox {
+    overflow: auto;
+    display: block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    margin-top: 20px;
+    border-color: #646464;
+    background-color: #F3F3F3;
+    color: #5F6166; }
+    #AlertBox .alertBox i {
+      padding: 10px;
+      float: right; }
+      #AlertBox .alertBox i:hover {
+        cursor: pointer; }
+    #AlertBox .alertBox.error {
+      border-color: #913939;
+      background-color: #C05E5E;
+      color: #644040; }
+    #AlertBox .alertBox.success {
+      border-color: #4E6D26;
+      background-color: #87AF70;
+      color: #2B5013; }
+    #AlertBox .alertBox.warning {
+      border-color: #B99E48;
+      background-color: #DFC50B;
+      color: #696423; }
+    #AlertBox .alertBox.loading {
+      border-color: #416A96;
+      background-color: #4AB1C5;
+      color: #343E5F; }
 
 /*# sourceMappingURL=base.css.map */
