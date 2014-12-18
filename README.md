@@ -19,15 +19,17 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Parsing posts' date</del>
 * Upload restrictions
 * <del>Title and message validation</del>
-* Error alerts
-* Adding answer doesn't reload page, just fetches new answers
+* Alerts (error, success ...)
+* <del>Adding answer doesn't reload page, just fetches new answers</del>
 * Links, bolds, etc in message parsed right
 * Identify author somehow (IP?)
-* Deleting threads (by owner only?)
+* <del>Deleting posts</del>
+* When post is deleted all images are also.
+* Posts can only be deleted by author (and admin)
 * <del>If no title, show beginning of the post as title</del>
 * "Quoting" post
 * Anchor links to posts
-* Error handling
+* Error handling in general
 * Get rid of the only template file (embed it to the app.js)?
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
