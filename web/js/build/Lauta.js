@@ -1,4 +1,5 @@
  /** @jsx React.DOM */
+
 var Lauta = React.createClass({displayName: 'Lauta',
     getDefaultProps: function() {
         return {
@@ -10,11 +11,16 @@ var Lauta = React.createClass({displayName: 'Lauta',
 //        console.log(this.props)
         
         return (
-            React.createElement("div", {className: "threadBox"}, 
-                React.createElement("h1", null, "Lauta"), 
-                React.createElement("div", {className: "info"}, this.props.threads.length, " threads in this board!"), 
-                React.createElement(NewThreadForm, {scope: this.props.scope}), 
-                React.createElement(ThreadList, {data: this.props.threads})
+            React.createElement("div", null, 
+                React.createElement(Header, null), 
+
+                React.createElement("div", {className: "threadBox"}, 
+                    React.createElement(NewThreadForm, {scope: this.props.scope}), 
+                    React.createElement("div", {className: "info"}, this.props.threads.length, " threads in this board"), 
+                    React.createElement(ThreadList, {data: this.props.threads})
+                ), 
+            
+                React.createElement(Footer, null)
             )
         );
     }

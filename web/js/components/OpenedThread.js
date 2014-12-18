@@ -6,10 +6,15 @@ window.OpenedThread = React.createClass({
 //        console.log(this.props)
         
         return (
-            <div className="threadBox">
-                <a href="/"><h1>Lauta</h1></a>
-                <AnswerThreadForm id={this.props.thread.id} scope={this.props.scope}/>
-                <Thread data={this.props.thread} />
+            <div>
+                <Header />
+            
+                <div className="threadBox">
+                    <AnswerThreadForm id={this.props.thread.id} scope={this.props.scope}/>
+                    <Thread data={this.props.thread} />
+                </div>
+            
+                <Footer />
             </div>
         );
     }

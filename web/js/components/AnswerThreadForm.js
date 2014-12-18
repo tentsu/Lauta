@@ -17,7 +17,7 @@ var AnswerThreadForm = React.createClass({
         return (
             <div className="threadForm answer">
                 <form name="answerThreadForm" onSubmit={this.sendForm}>
-                    <strong>Answer thread</strong>
+                    <h3>Answer thread</h3>
                     <textarea ref="message" placeholder="Thread message"></textarea>
             
                     <input type="file" name="displayImage" id="postImage" accept="image/*" ref="image"/>

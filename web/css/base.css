@@ -2,24 +2,47 @@
   outline: none; }
 
 body {
-  font: 12px Geneva; }
+  font: 12px Geneva;
+  background-color: #EAEAEA; }
 
-.op {
-  background: #F1F7F5; }
+a {
+  text-decoration: none; }
+
+h1, h2, h3 {
+  color: #102519; }
+
+header {
+  text-align: center;
+  margin: 40px 0; }
+  header h1 a {
+    font: 2.5rem 'Antic Slab';
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #F1A382; }
+
+.info {
+  margin: 20px 0; }
 
 .post {
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  background-color: #D3D3D3;
   display: block;
-  overflow: auto; }
-  .post .title {
-    padding: 10px; }
+  overflow: auto;
+  padding: 25px; }
+  .post.op {
+    background: #99C5B4; }
+  .post .title a {
+    font-size: 15px;
+    line-height: 2;
+    color: #102519; }
   .post .author {
     color: green;
     margin-right: 10px; }
   .post .message {
-    padding: 10px;
-    padding-left: 0; }
+    color: #102519;
+    font: 13px Geneva;
+    line-height: 1.5;
+    white-space: pre-wrap; }
   .post .time, .post .author {
     display: inline-block; }
   .post img {
@@ -37,46 +60,49 @@ body {
   margin: 0 40px; }
 
 .threadForm {
-  width: 400px;
-  margin: 0 auto;
-  margin-bottom: 50px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px; }
+  width: 550px;
+  margin: 20px auto;
+  background-color: #4CB6A4;
+  padding: 15px 30px; }
   .threadForm input, .threadForm textarea {
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    border-radius: 2px;
     box-sizing: border-box;
     display: block;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border: none;
     width: 100%;
     font: 12px Arial;
-    padding: 5px;
+    padding: 10px;
     margin: 10px 0; }
   .threadForm textarea {
     height: 100px;
     resize: vertical; }
   .threadForm button {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    width: 100px;
-    padding: 10px;
-    background-color: #90baba;
-    border: 1px solid #3E9898;
+    min-width: 100px;
+    padding: 10px 20px;
+    background-color: #E46E5C;
+    border: none;
     margin: 0 auto;
+    margin-top: 20px;
     display: block;
-    box-sizing: content-box; }
+    box-sizing: content-box;
+    font: 13px Geneva;
+    color: #883A2F;
+    text-transform: uppercase;
+    letter-spacing: 1px; }
     .threadForm button:hover {
       cursor: pointer;
-      background-color: #8ca3a3;
-      border: 1px solid #5F7B7B; }
+      color: #4CB6A4;
+      background-color: #99C5B4; }
+
+footer {
+  margin: 100px 0;
+  font-size: 13px;
+  color: #ccc;
+  text-align: center; }
+  footer a {
+    color: #F1A382;
+    text-decoration: none; }
+    footer a:hover {
+      color: #4CB6A4; }
 
 /*# sourceMappingURL=base.css.map */
