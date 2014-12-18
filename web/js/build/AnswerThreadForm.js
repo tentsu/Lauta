@@ -11,12 +11,14 @@ var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
             img: document.getElementById("postImage").files[0]
         };
         
-        this.props.scope.addAnswer(post);
+        this.props.scope.addAnswer(post, function () {
+            document.getElementById("answerThreadForm").reset();
+        });
     },
     render: function() {
         return (
             React.createElement("div", {className: "threadForm answer"}, 
-                React.createElement("form", {name: "answerThreadForm", onSubmit: this.sendForm}, 
+                React.createElement("form", {name: "answerThreadForm", id: "answerThreadForm", onSubmit: this.sendForm}, 
                     React.createElement("h2", null, "Answer thread"), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
             

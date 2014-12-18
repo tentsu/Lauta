@@ -31,9 +31,10 @@ function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory) {
      * @name addAnswer
      * @desc Calls factory to add given post to database
      */
-    $scope.addAnswer = function(post) {
+    $scope.addAnswer = function(post, clearForm) {
         ThreadFactory.addPost(post).then(function(data) {
-            window.location.replace("/"+data.id);
+            getNewAnswers();
+            clearForm();
         }, function (){
             console.log("ERROR")
         });
