@@ -11,7 +11,7 @@ var ThreadList = React.createClass({displayName: 'ThreadList',
                 React.createElement(Thread, {data: thread, key: thread.id})
             );
         });
-        
+            
         return (
             React.createElement("div", {className: "threadList"}, 
                 threads

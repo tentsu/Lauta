@@ -24,18 +24,19 @@ function ThreadFactory($http, $q, Threads, $upload) {
     
     function getThreads() {
         var d = $q.defer();
-        Threads.query({}, function(response) {
-            var data = response;
-
+        Threads.query({}, function(data) {
             for (var i = 0; i < data.length; i++) {
-                var pituus = data[i].answers.length;
+                var answerCount = data[i].answers.length;
                 var temp = [];
-
+                
                 for (var j = 1; j <= 3; j++) {
-                    temp[3 - j] = data[i].answers[pituus - j];
+                    if (data[i].answers[answerCount - j] != undefined) {
+                        temp.unshift(data[i].answers[answerCount - j]);
+                    }
                 }
+                
                 data[i].answers = temp;
-                data[i].answerCount = pituus;
+                data[i].answerCount = answerCount;
             }
             
             d.resolve(data);
