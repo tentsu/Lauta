@@ -37,10 +37,13 @@ header {
   padding: 25px; }
   .post.op {
     background: #99C5B4; }
-  .post .title a {
+  .post a {
+    color: #E46E5C; }
+    .post a:hover {
+      color: #4CB6A4; }
+  .post .title {
     font-size: 15px;
-    line-height: 2;
-    color: #102519; }
+    line-height: 2; }
   .post .author {
     color: green;
     margin-right: 10px; }
