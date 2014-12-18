@@ -40,3 +40,4 @@ But hey, I still love "Fixed things." commits. :P
 
 * <del>If thread has less than 3 answers, none of them are show in the frontpage</del>
 * <del>Posts' timestamps need somes 0s and +1s</del>
+* Long one line messages go over box
