@@ -38,6 +38,9 @@ var Post = React.createClass({displayName: 'Post',
         
         this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
     },
+    postIdClick: function() {
+        document.getElementById("postMessage").value += ">>" + this.props.data.id;
+    },
     render: function() {
         var data = this.props.data;
 //        console.log(this.props)
@@ -56,7 +59,7 @@ var Post = React.createClass({displayName: 'Post',
         });
         
         var titleBar = (this.props.op)
-            ?   React.createElement("div", {className: "title"}, 
+            ?   React.createElement("div", {className: "threadTitle"}, 
                     React.createElement("a", {href: data.id}, data.title)
                 )
             : "";
@@ -67,21 +70,28 @@ var Post = React.createClass({displayName: 'Post',
                 )
             : "";
         
+        var postLink = '#' + data.id;
+        
         return (
-            React.createElement("div", {className: postStyles}, 
+            React.createElement("div", null, 
                 titleBar, 
-                deleteButton, 
-                React.createElement("a", {target: "_blank", href: data.img}, 
-                    React.createElement("img", {onClick: this.imageClick, className: imageSize, src: data.img})
-                ), 
-                React.createElement("div", {className: "author"}, 
-                    data.author
-                ), 
-                React.createElement("div", {className: "time"}, 
-                    time
-                ), 
-                React.createElement("div", {className: "message"}, 
-                    data.message
+                React.createElement("div", {className: postStyles, id: data.id}, 
+                    deleteButton, 
+                    React.createElement("a", {target: "_blank", href: data.img}, 
+                        React.createElement("img", {onClick: this.imageClick, className: imageSize, src: data.img})
+                    ), 
+                    React.createElement("div", {className: "postId"}, 
+                        React.createElement("a", {href: "", onClick: this.postIdClick}, " >>", data.id)
+                    ), 
+                    React.createElement("div", {className: "author"}, 
+                        data.author
+                    ), 
+                    React.createElement("div", {className: "time"}, 
+                        time
+                    ), 
+                    React.createElement("div", {className: "message"}, 
+                        data.message
+                    )
                 )
             )
         );

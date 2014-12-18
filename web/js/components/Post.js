@@ -38,6 +38,9 @@ var Post = React.createClass({
         
         this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
     },
+    postIdClick: function() {
+        document.getElementById("postMessage").value += ">>" + this.props.data.id;
+    },
     render: function() {
         var data = this.props.data;
 //        console.log(this.props)
@@ -56,7 +59,7 @@ var Post = React.createClass({
         });
         
         var titleBar = (this.props.op)
-            ?   <div className="title">
+            ?   <div className="threadTitle">
                     <a href={data.id}>{data.title}</a>
                 </div>
             : "";
@@ -67,21 +70,28 @@ var Post = React.createClass({
                 </div>
             : "";
         
+        var postLink = '#' + data.id;
+        
         return (
-            <div className={postStyles}>
+            <div>
                 {titleBar}
-                {deleteButton}
-                <a target="_blank" href={data.img}>
-                    <img onClick={this.imageClick} className={imageSize} src={data.img} />
-                </a>
-                <div className="author">
-                    {data.author}
-                </div>
-                <div className="time">
-                    {time}
-                </div>
-                <div className="message">
-                    {data.message}
+                <div className={postStyles} id={data.id}>
+                    {deleteButton}
+                    <a target="_blank" href={data.img}>
+                        <img onClick={this.imageClick} className={imageSize} src={data.img} />
+                    </a>
+                    <div className="postId">
+                        <a href="" onClick={this.postIdClick}> >>{data.id}</a>
+                    </div>
+                    <div className="author">
+                        {data.author}
+                    </div>
+                    <div className="time">
+                        {time}
+                    </div>
+                    <div className="message">
+                        {data.message}
+                    </div>
                 </div>
             </div>
         );

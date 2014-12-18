@@ -6,7 +6,10 @@ body {
   background-color: #EAEAEA; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #E46E5C; }
+  a:hover {
+    color: #4CB6A4; }
 
 h1, h2, h3 {
   font-family: 'Antic Slab';
@@ -29,6 +32,10 @@ header {
 .info {
   margin: 20px 0; }
 
+.threadTitle {
+  font-size: 1.5rem;
+  line-height: 2; }
+
 .post {
   margin-bottom: 20px;
   background-color: #D3D3D3;
@@ -37,13 +44,9 @@ header {
   padding: 25px; }
   .post.op {
     background: #99C5B4; }
-  .post a {
-    color: #E46E5C; }
-    .post a:hover {
-      color: #4CB6A4; }
-  .post .title {
-    font-size: 15px;
-    line-height: 2; }
+  .post .postId, .post .time, .post .author {
+    display: inline-block;
+    margin-right: 10px; }
   .post .author {
     color: green;
     margin-right: 10px; }
@@ -52,8 +55,6 @@ header {
     font: 13px Geneva;
     line-height: 1.5;
     white-space: pre-wrap; }
-  .post .time, .post .author {
-    display: inline-block; }
   .post img {
     float: left;
     max-width: 250px;

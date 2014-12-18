@@ -20,7 +20,7 @@ var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
             React.createElement("div", {className: "threadForm answer"}, 
                 React.createElement("form", {name: "answerThreadForm", id: "answerThreadForm", onSubmit: this.sendForm}, 
                     React.createElement("h2", null, "Answer thread"), 
-                    React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
+                    React.createElement("textarea", {ref: "message", placeholder: "Thread message", id: "postMessage"}), 
             
                     React.createElement("input", {type: "file", name: "displayImage", id: "postImage", accept: "image/*", ref: "image"}), 
                     React.createElement("button", {type: "submit"}, "Answer thread")
