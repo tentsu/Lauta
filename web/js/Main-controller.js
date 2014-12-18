@@ -43,7 +43,7 @@ function MainCtrl ($scope, $http, $interval, ThreadFactory) {
      * @param {post.img} Post's image
      */
     $scope.addThread = function(post) {
-        ThreadFactory.addThread(post)
+        ThreadFactory.addPost(post)
             .then(function(data) {
                 window.location.replace("/"+data.id);
             });

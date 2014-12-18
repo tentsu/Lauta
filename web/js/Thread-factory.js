@@ -89,62 +89,51 @@ function ThreadFactory($http, $q, Threads, $upload) {
     
     
     /*
-     * @name addThread
-     * @desc Add thread to database
+     * @name addPost
+     * @desc Add post to database as new thread or answer to thread
      * @param {post} Post's details
-     * @param {post.title} Post's title
+     * @param {post.title} Post's title (answers don't have)
      * @param {post.message} Post's message
      * @param {post.img} Post's image
      * @return {Promise} Object with inserted thread's id
      */
-    function addThread(post) {
+    function addPost(post) {
         var d = $q.defer();
+        var method = (!post.threadId) ? 'POST' : 'PUT';
         
-        $upload.upload({
-            url: '/api/posts',
-            method: 'POST',
-            file: post.img,
-            data: post,
-            fileFormDataName: 'myFile'
-        }).success(function(data, status, headers, config) {
-            d.resolve(data);
-        });
+        if (!postValidation(post)) {
+            console.log("Fields empty");
+            d.reject(false);
+        } else {
+            $upload.upload({
+                url: '/api/posts',
+                method: method,
+                file: post.img,
+                data: post,
+                fileFormDataName: 'myFile'
+            }).success(function(data, status, headers, config) {
+                d.resolve(data);
+            });
+        }
         
         return d.promise;
     }
     
     
-    /*
-     * @name addAnswer
-     * @desc Add answer post to database
-     * @param {post} Post's details
-     * @param {post.message} Post's message
-     * @param {post.img} Post's image
-     * @return {Promise} Object with inserted thread's id
-     */
-    function addAnswer(id, post) {
-        var d = $q.defer();
+    function postValidation(post) {
+        if (!post.title && !post.message && !post.img) {
+            return false;
+        }
         
-        console.log(post)
-        
-        $upload.upload({
-            url: '/api/posts/',
-            method: 'PUT',
-            file: post.img,
-            data: post,
-            fileFormDataName: 'myFile'
-        }).success(function(data, status, headers, config) {
-            d.resolve(data);
-        });
-        
-        return d.promise;
+        return true;
     }
     
     return {
         getThreads: getThreads,
         getThread: getThread,
-        addThread: addThread,
-        addAnswer: addAnswer,
+//        addThread: addThread,
+//        addAnswer: addAnswer,
+        addPost: addPost,
         getNewAnswers: getNewAnswers
     };
 }

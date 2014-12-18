@@ -11,7 +11,7 @@ var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
             img: document.getElementById("postImage").files[0]
         };
         
-        this.props.scope.addAnswer(this.props.id, post);
+        this.props.scope.addAnswer(post);
     },
     render: function() {
         return (
