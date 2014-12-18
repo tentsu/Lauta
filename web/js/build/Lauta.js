@@ -16,6 +16,8 @@ var Lauta = React.createClass({displayName: 'Lauta',
 
                 React.createElement("div", {className: "threadBox"}, 
                     React.createElement(NewThreadForm, {scope: this.props.scope}), 
+                    
+                    React.createElement("h2", null, "Threads"), 
                     React.createElement("div", {className: "info"}, this.props.threads.length, " threads in this board"), 
                     React.createElement(ThreadList, {data: this.props.threads})
                 ), 

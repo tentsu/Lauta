@@ -9,16 +9,22 @@ a {
   text-decoration: none; }
 
 h1, h2, h3 {
-  color: #102519; }
+  font-family: 'Antic Slab';
+  color: #F1A382; }
+
+#content {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 20px; }
 
 header {
   text-align: center;
   margin: 40px 0; }
   header h1 a {
-    font: 2.5rem 'Antic Slab';
+    font-size: 2.5rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: #F1A382; }
+    color: #E46E5C; }
 
 .info {
   margin: 20px 0; }
@@ -56,14 +62,8 @@ header {
   font-size: 10px;
   margin: 5px 0 10px; }
 
-.threadBox {
-  margin: 0 40px; }
-
 .threadForm {
-  width: 550px;
-  margin: 20px auto;
-  background-color: #4CB6A4;
-  padding: 15px 30px; }
+  margin: 20px auto; }
   .threadForm input, .threadForm textarea {
     box-sizing: border-box;
     display: block;
@@ -71,7 +71,7 @@ header {
     border: none;
     width: 100%;
     font: 12px Arial;
-    color: #644E4C;
+    color: #4CB6A4;
     padding: 10px;
     margin: 10px 0; }
   .threadForm textarea {

@@ -17,7 +17,7 @@ var NewThreadForm = React.createClass({displayName: 'NewThreadForm',
         return (
             React.createElement("div", {className: "threadForm new"}, 
                 React.createElement("form", {name: "newThread", encType: "multipart/form-data", onSubmit: this.sendForm}, 
-                    React.createElement("h3", null, "New thread"), 
+                    React.createElement("h2", null, "New thread"), 
                     React.createElement("input", {type: "text", placeholder: "Thread title", ref: "title"}), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
                     

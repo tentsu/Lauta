@@ -17,7 +17,7 @@ var NewThreadForm = React.createClass({
         return (
             <div className="threadForm new">
                 <form name="newThread" encType="multipart/form-data" onSubmit={this.sendForm}>
-                    <h3>New thread</h3>
+                    <h2>New thread</h2>
                     <input type="text" placeholder="Thread title" ref="title"/>
                     <textarea ref="message" placeholder="Thread message"></textarea>
                     

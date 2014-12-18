@@ -17,7 +17,7 @@ var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
         return (
             React.createElement("div", {className: "threadForm answer"}, 
                 React.createElement("form", {name: "answerThreadForm", onSubmit: this.sendForm}, 
-                    React.createElement("h3", null, "Answer thread"), 
+                    React.createElement("h2", null, "Answer thread"), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message"}), 
             
                     React.createElement("input", {type: "file", name: "displayImage", id: "postImage", accept: "image/*", ref: "image"}), 
