@@ -15,6 +15,8 @@ module.exports = function(app, db) {
     
     app.put("/api/posts", multipartMiddleware, ThreadCtrl.answerThread);
     
+    app.delete("/api/posts/:threadId/:postId", ThreadCtrl.deletePost);
+    
     app.get('*', function(req, res, next) {
         // Just send the index.html for other files to support HTML5Mode
         res.sendFile('web/index.html', { root: __dirname });

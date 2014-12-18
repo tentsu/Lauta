@@ -166,8 +166,52 @@ function ThreadController(db) {
                 });
             }
 
-            res.send({ id: doc.id});
+            res.send({id: doc.id});
         });
+    }
+    
+    /*
+     * Delete post (thread and answer)
+     */
+    this.deletePost = function(req, res, next) {
+        console.log("delete post")
+        
+        var threadId = parseInt(req.params.threadId);
+        var postId = parseInt(req.params.postId);
+        
+        console.log(threadId)
+        console.log(postId)
+        
+        
+        var doc = { id : threadId };
+        
+        if (threadId == postId) {
+
+            threads.remove(doc, function(err, removed){
+                console.log("removed item");
+                console.log(removed);
+                
+                // TODO: delete images
+            });
+        } else {
+            var operations = {
+                '$pull': {
+                    'answers': {
+                        'id': postId
+                    }
+                }
+            };
+
+            threads.update(doc, operations, function(err, added) {
+                "use strict";
+                
+                console.log("Removed answer post from thread");
+                
+                // TODO: delete image
+            });
+        }
+        
+        res.send(req.params);
     }
     
     /*

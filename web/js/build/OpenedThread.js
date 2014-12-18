@@ -11,7 +11,7 @@ window.OpenedThread = React.createClass({displayName: 'OpenedThread',
             
                 React.createElement("div", {className: "threadBox"}, 
                     React.createElement(AnswerThreadForm, {id: this.props.thread.id, scope: this.props.scope}), 
-                    React.createElement(Thread, {data: this.props.thread})
+                    React.createElement(Thread, {data: this.props.thread, scope: this.props.scope})
                 ), 
             
                 React.createElement(Footer, null)

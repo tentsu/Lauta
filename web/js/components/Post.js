@@ -3,7 +3,6 @@
 var Post = React.createClass({
     getInitialState: function() {
         return {
-            op: false,
             full: false
         };
     },
@@ -31,6 +30,14 @@ var Post = React.createClass({
         event.preventDefault();
         this.setState({full: !this.state.full});
     },
+    deletePost: function() {
+        if (this.props.scope.thread == undefined) {
+            console.log("jk lol.")
+            return;
+        }
+        
+        this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
+    },
     render: function() {
         var data = this.props.data;
 //        console.log(this.props)
@@ -54,9 +61,16 @@ var Post = React.createClass({
                 </div>
             : "";
         
+        var deleteButton = (this.props.scope.thread != undefined)
+            ?   <div className="deletePost" onClick={this.deletePost}>
+                    Delete
+                </div>
+            : "";
+        
         return (
             <div className={postStyles}>
                 {titleBar}
+                {deleteButton}
                 <a target="_blank" href={data.img}>
                     <img onClick={this.imageClick} className={imageSize} src={data.img} />
                 </a>

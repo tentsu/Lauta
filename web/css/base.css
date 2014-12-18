@@ -60,6 +60,12 @@ header {
     padding-right: 10px; }
     .post img.full {
       max-width: 100%; }
+  .post .deletePost {
+    float: right;
+    cursor: pointer;
+    color: #E46E5C; }
+    .post .deletePost:hover {
+      color: #F1A382; }
 
 .meta-data {
   font-size: 10px;

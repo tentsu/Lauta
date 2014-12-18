@@ -42,6 +42,20 @@ function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory) {
     
     
     /*
+     * @name deletePost
+     * @desc Calls factory to delete given post from database
+     */
+    $scope.deletePost = function(threadId, postId) {
+        ThreadFactory.deletePost(threadId, postId).then(function(data) {
+//            console.log(data)
+            window.location.replace("/");
+        }, function (){
+            console.log("ERROR")
+        });
+    };
+    
+    
+    /*
      * @name getNewAnswers
      * @desc Calls factory to get all answers on given thread that have come after timestamp
      */

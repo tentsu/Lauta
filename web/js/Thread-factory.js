@@ -120,6 +120,28 @@ function ThreadFactory($http, $q, Threads, $upload) {
     }
     
     
+    /*
+     * @name deletePost
+     * @desc Add post to database as new thread or answer to thread
+     * @param {post} Post's details
+     * @param {post.title} Post's title (answers don't have)
+     * @param {post.message} Post's message
+     * @param {post.img} Post's image
+     * @return {Promise} Object with inserted thread's id
+     */
+    function deletePost(threadId, postId) {
+        var d = $q.defer();
+        
+        Threads.delete({threadId: threadId, postId: postId}, function(response) {
+            d.resolve(response);
+        }, function (response) {
+            console.log(response)
+        });
+        
+        return d.promise;
+    }
+    
+    
     function postValidation(post) {
         if (!post.title && !post.message && !post.img) {
             return false;
@@ -131,9 +153,8 @@ function ThreadFactory($http, $q, Threads, $upload) {
     return {
         getThreads: getThreads,
         getThread: getThread,
-//        addThread: addThread,
-//        addAnswer: addAnswer,
         addPost: addPost,
+        deletePost: deletePost,
         getNewAnswers: getNewAnswers
     };
 }
@@ -166,8 +187,8 @@ function ThreadResource($resource) {
         return fd;
     }
     
-    return $resource("/api/posts/:id/:time",
-        {id: "@id", time: "@time"},
+    return $resource("/api/posts/:id/:time/:threadId/:postId",
+        {id: "@id", time: '@time', threadId: '@threadId', postId: '@postId'},
         { 'get':    {method:'GET'},
           'save':   {
                 method:'POST',

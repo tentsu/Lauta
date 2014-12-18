@@ -2,6 +2,7 @@
 
 var Thread = React.createClass({displayName: 'Thread',
     render: function() {
+        var props = this.props;
         var skippedAnswers = React.createElement("div", null);
         
         if (this.props.data.answers == undefined || this.props.data.answers[0] == undefined) {
@@ -14,14 +15,14 @@ var Thread = React.createClass({displayName: 'Thread',
             
             var answers = this.props.data.answers.map(function(answer, index) {
                 return (
-                    React.createElement(Post, {data: answer, key: answer.id})
+                    React.createElement(Post, {data: answer, key: answer.id, scope: props.scope})
                 );
             });
         }
         
         return (
             React.createElement("div", {className: "thread"}, 
-                React.createElement(Post, {data: this.props.data, op: "true"}), 
+                React.createElement(Post, {data: this.props.data, scope: this.props.scope, op: "true"}), 
                 skippedAnswers, 
                 answers
             )

@@ -48,6 +48,19 @@ function MainCtrl ($scope, $http, $interval, ThreadFactory) {
                 window.location.replace("/"+data.id);
             });
     };
+    
+    
+    /*
+     * @name deletePost
+     * @desc Calls factory to delete given post from database
+     */
+    $scope.deletePost = function(post) {
+        ThreadFactory.deletePost(post).then(function(data) {
+            console.log("jee poistettu")
+        }, function (){
+            console.log("ERROR")
+        });
+    };
 }
     
 })();

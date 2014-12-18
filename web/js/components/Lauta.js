@@ -19,7 +19,7 @@ var Lauta = React.createClass({
                     
                     <h2>Threads</h2>
                     <div className="info">{this.props.threads.length} threads in this board</div>
-                    <ThreadList data={this.props.threads}/>
+                    <ThreadList data={this.props.threads} scope={this.props.scope} />
                 </div>
             
                 <Footer />
