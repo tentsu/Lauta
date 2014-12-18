@@ -71,6 +71,7 @@ header {
     border: none;
     width: 100%;
     font: 12px Arial;
+    color: #644E4C;
     padding: 10px;
     margin: 10px 0; }
   .threadForm textarea {
@@ -79,16 +80,21 @@ header {
   .threadForm button {
     min-width: 100px;
     padding: 10px 20px;
-    background-color: #E46E5C;
+    background-color: #D3D3D3;
     border: none;
     margin: 0 auto;
     margin-top: 20px;
     display: block;
     box-sizing: content-box;
     font: 13px Geneva;
-    color: #883A2F;
+    color: #4CB6A4;
     text-transform: uppercase;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
     .threadForm button:hover {
       cursor: pointer;
       color: #4CB6A4;
