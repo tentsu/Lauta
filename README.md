@@ -27,10 +27,11 @@ But hey, I still love "Fixed things." commits. :P
 * When post is deleted all images are also.
 * Posts can only be deleted by author (and admin)
 * <del>If no title, show beginning of the post as title</del>
-* "Quoting" post
-* Anchor links to posts
+* <del>"Quoting" post</del>
+* <del>Anchor links to posts</del>
 * Error handling in general
 * Get rid of the only template file (embed it to the app.js)?
+* Update package.json
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
 
