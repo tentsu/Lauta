@@ -60,7 +60,7 @@ var Post = React.createClass({
         
         var titleBar = (this.props.op)
             ?   <div className="threadTitle">
-                    <h3><a href={data.id}>{data.title}</a></h3>
+                    <h2><a href={data.id}>{data.title}</a></h2>
                 </div>
             : "";
         
