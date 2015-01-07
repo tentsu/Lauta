@@ -35,7 +35,7 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", {
-            template: '<lauta id="react" />{{threads}}',
+            template: '<lauta id="react" />',
             controller: 'MainCtrl',
         })
         .when('/:threadId', {

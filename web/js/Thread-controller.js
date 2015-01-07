@@ -36,9 +36,7 @@ function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory, alerts) {
             getNewAnswers();
             clearForm();
             
-            alerts.addAlert("success", "Answer added.", null, function () {
-                console.log("jee");
-            });
+            alerts.addAlert("success", "Answer added.");
         }, function (){
             console.log("ERROR")
         });

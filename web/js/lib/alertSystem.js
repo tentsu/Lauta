@@ -3,31 +3,75 @@
 (function () {
     "use strict";
 
-    angular.module("AlertSystem", [])
-        .controller("AlertCtrl", AlertCtrl)
-        .directive("alert", alert)
+    angular.module('AlertSystem', [])
+        .controller('AlertCtrl', AlertCtrl)
+        .directive('alert', alert)
+        .directive('alertBox', alertBox)
         .factory('alerts', alertFactory);
 
     function AlertCtrl($scope, alerts) {
         $scope.alerts = alerts.alerts;
 
+        $scope.confirm = function (i) {
+            if (i.method != null || i.method != undefined) {
+                i.method();
+            }
+            
+            alerts.closeAlert(i);
+        };
+        
         $scope.closeAlert = function (i) {
             alerts.closeAlert(i);
         };
     }
     
+    
+    /**
+     * @desc AlertBox directive to hold all alerts inside
+     * @example <alert-box></alert-box>
+     */
+    function alertBox() {
+
+        var directive = {
+            template: 
+                '<div id="AlertBox" ng-controller="AlertCtrl">'+
+                    '<alert ng-repeat="a in alerts" ' +
+                        'on-close="closeAlert($index)" confirm="confirm(a)" a="a" type="a.type" ' +
+                        'class="alertBox" ng-class="a.type"></alert>'+
+                '</div>'
+        };
+
+        return directive;
+    }
+    
     /**
      * @desc Alert directive to display and handle alert controls
-     * @file alert.directive.js
      * @example <alert a="alert"></alert>
      */
     function alert($timeout, $compile) {
+        var template =
+            '<div> ' +
+                '<i class="glyphicon glyphicon-remove" ' +
+                    'ng-show="a.type != loading && a.type != confirm" ' +
+                    'ng-click="closeAlert()"></i> ' +
+
+                '<h4 ng-bind="a.title"></h4> ' +
+                '<p ng-bind="a.message"</p> ' +
+
+                '<p ng-show="a.type == \'confirm\'"> ' +
+                    '<button class="btn btn-sm btn-success" ' +
+                        'ng-click="confirm(a)">Confirm</button>' +
+                    '<button class="btn btn-sm" ng-click="closeAlert()">Close</button> ' +
+                '</p> ' +
+            '</div>';
 
         var directive = {
             restrict: 'E',
+            template: template,
             scope: {
                 a: '=',
-                closeAlert: '&onClose'
+                closeAlert: '&onClose',
+                confirm: '&confirm'
             },
             link: link
         };
@@ -36,7 +80,6 @@
 
         function link(scope, element, attrs) {
             scope.$watch(attrs.type, function (type) {
-
                 if (type !== 'loading' && type !== "confirm") {
                     $timeout(function () {
                         scope.closeAlert();
