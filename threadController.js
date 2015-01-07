@@ -19,7 +19,6 @@ function ThreadController(db) {
 //            console.log(thread);
             return res.json(thread)
         });
-
     }
     
     
@@ -139,9 +138,10 @@ function ThreadController(db) {
             author: createID(10),
             message: req.body.message
         }
-        
+
         if (req.files.myFile) {
-            post.img = "images/" + req.files.myFile.originalFilename;
+            var format = req.files.myFile.originalFilename.split(".");
+            post.img = 'images/' + createID(6) + '.' + format[format.length - 1];
         }
         
         var doc = { id: parseInt(req.body.threadId) };
@@ -166,7 +166,7 @@ function ThreadController(db) {
                 });
             }
 
-            res.send({id: doc.id});
+            res.send({id: post.id});
         });
     }
     
@@ -185,14 +185,20 @@ function ThreadController(db) {
         
         var doc = { id : threadId };
         
+        // Deleting whole thread
         if (threadId == postId) {
+            threads.distinct('answers.img', {'id': doc.id}, function(err, imgs) {
+                for (var i = 0; i < imgs.length; i++) {
+                    fs.unlink(imgs[i]);
+                }
 
-            threads.remove(doc, function(err, removed){
-                console.log("removed item");
-                console.log(removed);
-                
-                // TODO: delete images
+                threads.remove(doc, function(err, removed) {
+                    console.log("removed item");
+                });
             });
+            
+            res.send(false);
+        // Deleting single post
         } else {
             var operations = {
                 '$pull': {
@@ -202,16 +208,20 @@ function ThreadController(db) {
                 }
             };
 
-            threads.update(doc, operations, function(err, added) {
-                "use strict";
+            threads.findOne({id: threadId, 'answers.id': postId}, function(err, item) {
+                for (var i = 0; i < item.answers.length; i++) {
+                    if (item.answers[i].id == postId && item.answers[i].img != null) {
+                        fs.unlink(item.answers[i].img);
+                    }
+                }
                 
-                console.log("Removed answer post from thread");
-                
-                // TODO: delete image
+                threads.update(doc, operations, function(err, removed) {
+                    console.log("Removed answer post from thread");
+                });
             });
+            res.send(req.params);
         }
         
-        res.send(req.params);
     }
     
     /*

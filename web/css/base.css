@@ -59,7 +59,7 @@ header {
     word-wrap: break-word; }
   .post img {
     float: left;
-    max-width: 250px;
+    max-width: 25%;
     padding-right: 10px; }
     .post img.full {
       max-width: 100%; }

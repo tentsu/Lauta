@@ -8,9 +8,9 @@
 angular.module('Thread')
     .controller('ThreadCtrl', ThreadCtrl);
     
-ThreadCtrl.$inject = ['$scope', '$interval', '$routeParams', 'ThreadFactory', 'alerts'];
+ThreadCtrl.$inject = ['$scope', '$interval', '$location', '$routeParams', 'ThreadFactory', 'alerts'];
 
-function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory, alerts) {
+function ThreadCtrl($scope, $interval, $location, $routeParams, ThreadFactory, alerts) {
     // Init thread so React is happy
     $scope.thread = {};
     
@@ -49,8 +49,17 @@ function ThreadCtrl($scope, $interval, $routeParams, ThreadFactory, alerts) {
      */
     $scope.deletePost = function(threadId, postId) {
         ThreadFactory.deletePost(threadId, postId).then(function(data) {
-//            console.log(data)
-            window.location.replace("/");
+            console.log(data);
+            alerts.addAlert('success', 'Post deleted.');
+            
+            if (!data) {
+                ThreadFactory.getThread(threadId)
+                    .then( function(data) {
+                        $scope.thread = data;
+                    })
+            } else {
+                window.location.replace('/');
+            }
         }, function (){
             console.log("ERROR")
         });
