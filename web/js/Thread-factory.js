@@ -101,7 +101,10 @@ function ThreadFactory($http, $q, Threads, $upload) {
         var d = $q.defer();
         var method = (!post.threadId) ? 'POST' : 'PUT';
         
-        if (!postValidation(post)) {
+        if (post.img && post.img.size > 1048578) { // images can be 1MB max
+            console.log("img too big");
+            d.reject(false);
+        } else if (!postValidation(post)) {
             console.log("Fields empty");
             d.reject(false);
         } else {
