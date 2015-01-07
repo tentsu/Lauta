@@ -17,14 +17,15 @@ But hey, I still love "Fixed things." commits. :P
 * <del>When specific thread opened, client pulls new posts every 5 sec or so</del>
 * <del>Ordering threads by activity</del>
 * <del>Parsing posts' date</del>
-* Upload restrictions
+* <del>Upload restrictions</del>
 * <del>Title and message validation</del>
 * <del>Alerts (error, success ...)</del>
 * <del>Adding answer doesn't reload page, just fetches new answers</del>
-* Links, bolds, etc in message parsed right
+* <del>Links, bolds, etc in message parsed right</del> NOPE! This is very simple and naked.
 * Identify author somehow (IP?)
 * <del>Deleting posts</del>
-* When post is deleted all images are also.
+* <del>When post is deleted all images are also.</del>
+* Anchor links to posts (from frontpage too)
 * Posts can only be deleted by author (and admin)
 * <del>If no title, show beginning of the post as title</del>
 * <del>"Quoting" post</del>
