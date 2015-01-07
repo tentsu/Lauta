@@ -19,7 +19,7 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Parsing posts' date</del>
 * Upload restrictions
 * <del>Title and message validation</del>
-* Alerts (error, success ...)
+* <del>Alerts (error, success ...)</del>
 * <del>Adding answer doesn't reload page, just fetches new answers</del>
 * Links, bolds, etc in message parsed right
 * Identify author somehow (IP?)
@@ -30,7 +30,7 @@ But hey, I still love "Fixed things." commits. :P
 * <del>"Quoting" post</del>
 * <del>Anchor links to posts</del>
 * Error handling in general
-* Get rid of the only template file (embed it to the app.js)?
+* <del>Get rid of the only template file (embed it to the app.js)?</del>
 * Update package.json
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
