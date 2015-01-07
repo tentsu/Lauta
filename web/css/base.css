@@ -55,7 +55,8 @@ header {
     color: #102519;
     font: 13px Geneva;
     line-height: 1.5;
-    white-space: pre-wrap; }
+    white-space: pre-wrap;
+    word-wrap: break-word; }
   .post img {
     float: left;
     max-width: 250px;
