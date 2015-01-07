@@ -12,12 +12,14 @@
     function AlertCtrl($scope, alerts) {
         $scope.alerts = alerts.alerts;
 
-        $scope.confirm = function (i) {
+        $scope.confirm = function (index) {
+            var i = $scope.alerts[index];
+            
             if (i.method != null || i.method != undefined) {
                 i.method();
             }
             
-            alerts.closeAlert(i);
+            alerts.closeAlert(index);
         };
         
         $scope.closeAlert = function (i) {
@@ -36,7 +38,7 @@
             template: 
                 '<div id="AlertBox" ng-controller="AlertCtrl">'+
                     '<alert ng-repeat="a in alerts" ' +
-                        'on-close="closeAlert($index)" confirm="confirm(a)" a="a" type="a.type" ' +
+                        'on-close="closeAlert($index)" confirm="confirm($index)" a="a" type="a.type" ' +
                         'class="alertBox" ng-class="a.type"></alert>'+
                 '</div>'
         };
@@ -52,16 +54,16 @@
         var template =
             '<div> ' +
                 '<i class="glyphicon glyphicon-remove" ' +
-                    'ng-show="a.type != loading && a.type != confirm" ' +
-                    'ng-click="closeAlert()"></i> ' +
+                    'ng-show="a.type != \'loading\' && a.type != \'confirm\'" ' +
+                    'ng-click="closeAlert()">close</i> ' +
 
                 '<h4 ng-bind="a.title"></h4> ' +
                 '<p ng-bind="a.message"</p> ' +
 
                 '<p ng-show="a.type == \'confirm\'"> ' +
-                    '<button class="btn btn-sm btn-success" ' +
-                        'ng-click="confirm(a)">Confirm</button>' +
-                    '<button class="btn btn-sm" ng-click="closeAlert()">Close</button> ' +
+                    '<button class="confirm" ' +
+                        'ng-click="confirm()">Confirm</button>' +
+                    '<button class="" ng-click="closeAlert()">Close</button> ' +
                 '</p> ' +
             '</div>';
 
