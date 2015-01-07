@@ -144,29 +144,45 @@ footer {
     border: 1px solid #ccc;
     padding: 0 10px;
     margin-top: 20px;
-    border-color: #646464;
-    background-color: #F3F3F3;
+    border-color: #D7D7D7;
+    background-color: #FAFAFA;
     color: #5F6166; }
     #AlertBox .alertBox i {
-      padding: 10px;
-      float: right; }
-      #AlertBox .alertBox i:hover {
-        cursor: pointer; }
-    #AlertBox .alertBox.error {
-      border-color: #913939;
-      background-color: #C05E5E;
-      color: #644040; }
+      font: 10px Tahoma, Arial, sans-serif;
+      font-style: normal;
+      float: right;
+      cursor: pointer; }
     #AlertBox .alertBox.success {
-      border-color: #4E6D26;
-      background-color: #87AF70;
-      color: #2B5013; }
+      border-color: #2FA175;
+      background-color: #0BD889;
+      color: #216F51; }
+    #AlertBox .alertBox.error {
+      border-color: #D00000;
+      background-color: #FA5B5B;
+      color: #BD1B1B; }
     #AlertBox .alertBox.warning {
-      border-color: #B99E48;
-      background-color: #DFC50B;
-      color: #696423; }
+      border-color: #EACE75;
+      background-color: #F4E369;
+      color: #9D9315; }
     #AlertBox .alertBox.loading {
-      border-color: #416A96;
-      background-color: #4AB1C5;
-      color: #343E5F; }
+      border-color: #059191;
+      background-color: #15D0D0;
+      color: #0E7676; }
+    #AlertBox .alertBox button {
+      padding: 8px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+      border: 1px solid #A8A8A8;
+      background-color: #D5D5D5;
+      color: #758E8E;
+      cursor: pointer; }
+      #AlertBox .alertBox button:first-child {
+        margin-right: 10px; }
+      #AlertBox .alertBox button.confirm {
+        border-color: #2FA175;
+        background-color: #0BD889;
+        color: #216F51; }
 
 /*# sourceMappingURL=base.css.map */
