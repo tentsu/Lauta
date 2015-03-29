@@ -4,20 +4,20 @@ var fs = require('fs');
 
 function ThreadController(db) {
     
-    var threads = db.collection("threads");
+    var threads = db.collection('threads');
+    var uploadFolder = 'web/uploads/';
+    
     
     /*
      * Find all threads
      */
     this.findThread = function(req, res, next) {
-        "use strict";
+        'use strict';
         
-        console.log("thread with id "+req.params.id)
+        console.log('thread with id '+req.params.id)
         
         threads.findOne({'id': parseInt(req.params.id)}, function(err, thread) {
-            "use strict";
-
-//            console.log(thread);
+            'use strict';
             return res.json(thread)
         });
     }
@@ -27,14 +27,14 @@ function ThreadController(db) {
      * Find specific thread by id
      */
     this.findAllThreads = function(req, res, next) {
-        "use strict";
+        'use strict';
         
-        console.log("All threads")
+        console.log('All threads')
         
         threads.find({}).sort({'updateTime': -1}).toArray(function(err, items) {
-            "use strict";
+            'use strict';
 
-            console.log("Found " + items.length + " posts");
+            console.log('Found ' + items.length + ' posts');
 
             return res.json(items)
         });
@@ -45,31 +45,31 @@ function ThreadController(db) {
      * Find new answers to a thread
      */
     this.findNewAnswers = function(req, res, next) {
-        "use strict";
+        'use strict';
         
         threads.aggregate([
-            {$unwind: "$answers"},
+            {$unwind: '$answers'},
             {$match: {
-                "id": parseInt(req.params.id),
-                "answers.time": {
-                    "$gt": new Date((new Date(req.params.time).toISOString()))
+                'id': parseInt(req.params.id),
+                'answers.time': {
+                    '$gt': new Date((new Date(req.params.time).toISOString()))
                 }
             }},
             {$project: {
-                "_id": 0,
-                "id": "$answers.id",
-                "time": "$answers.time",
-                "author": "$answers.author",
-                "message": "$answers.message",
-                "img": "$answers.img"
+                '_id': 0,
+                'id': '$answers.id',
+                'time': '$answers.time',
+                'author': '$answers.author',
+                'message': '$answers.message',
+                'img': '$answers.img'
             }},
             {$sort: {
-                "time" : 1
+                'time' : 1
             }}
         ], function(err, items) {
-            "use strict";
+            'use strict';
 
-            console.log("Found " + items.length + " new answers");
+            console.log('Found ' + items.length + ' new answers');
             
             console.log(items)
 
@@ -98,24 +98,24 @@ function ThreadController(db) {
             post.title = (post.message).substring(0, 50);
             
             if (post.message.length > 50) {
-                post.title += "...";
+                post.title += '...';
             }
         }
         
         if (req.files.myFile) {
-            post.img = "web/uploads/" + req.files.myFile.originalFilename;
+            post.img = uploadFolder + req.files.myFile.originalFilename;
         }
         
         threads.insert(post, function(err, inserted) {
             'use strict';
             
-            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader('Access-Control-Allow-Origin', '*');
             
             if (req.files.myFile) {
                 fs.readFile(req.files.myFile.path, function (err, data) {
                     var newPath = post.img;
                     fs.writeFile(newPath, data, function (err) {
-                        console.log("File uploaded");
+                        console.log('File uploaded');
                     });
                 });
             }
@@ -131,7 +131,7 @@ function ThreadController(db) {
     this.answerThread = function(req, res, next) {
         'use strict';
 
-        console.log("answer thread")
+        console.log('answer thread')
         
         var post = {
             id: createID(8),
@@ -141,8 +141,8 @@ function ThreadController(db) {
         }
 
         if (req.files.myFile) {
-            var format = req.files.myFile.originalFilename.split(".");
-            post.img = 'web/uploads/' + createID(6) + '.' + format[format.length - 1];
+            var format = req.files.myFile.originalFilename.split('.');
+            post.img = uploadFolder + createID(6) + '.' + format[format.length - 1];
         }
         
         var doc = { id: parseInt(req.body.threadId) };
@@ -155,14 +155,14 @@ function ThreadController(db) {
         };
 
         threads.update(doc, operations, function(err, added) {
-            "use strict";
-            res.setHeader("Access-Control-Allow-Origin", "*");
+            'use strict';
+            res.setHeader('Access-Control-Allow-Origin', '*');
             
             if (req.files.myFile) {
                 fs.readFile(req.files.myFile.path, function (err, data) {
                     var newPath = post.img;
                     fs.writeFile(newPath, data, function (err) {
-                        console.log("File uploaded");
+                        console.log('File uploaded');
                     });
                 });
             }
@@ -175,7 +175,7 @@ function ThreadController(db) {
      * Delete post (thread and answer)
      */
     this.deletePost = function(req, res, next) {
-        console.log("delete post")
+        console.log('delete post')
         
         var threadId = parseInt(req.params.threadId);
         var postId = parseInt(req.params.postId);
@@ -194,7 +194,7 @@ function ThreadController(db) {
                 }
 
                 threads.remove(doc, function(err, removed) {
-                    console.log("removed item");
+                    console.log('removed item');
                 });
             });
             
@@ -217,7 +217,7 @@ function ThreadController(db) {
                 }
                 
                 threads.update(doc, operations, function(err, removed) {
-                    console.log("Removed answer post from thread");
+                    console.log('Removed answer post from thread');
                 });
             });
             res.send(req.params);
@@ -229,7 +229,7 @@ function ThreadController(db) {
      * Create random number
      */
     function createID(length) {
-        var arr = "";
+        var arr = '';
         
         for (var i = 0; i < length; i++ ) {
             arr += getRandomInt(0, 9).toString();
