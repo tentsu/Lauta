@@ -1,11 +1,10 @@
 
+var multipart = require('connect-multiparty');
 var ThreadController = require('./threadController');
 
 module.exports = function(app, db) {
-    var ThreadCtrl = new ThreadController(db);
-    
-    var multipart = require('connect-multiparty');
     var multipartMiddleware = multipart();
+    var ThreadCtrl = new ThreadController(db);
     
     app.get ("/api/posts", ThreadCtrl.findAllThreads);
     app.get ("/api/posts/:id/:time", ThreadCtrl.findNewAnswers);

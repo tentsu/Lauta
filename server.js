@@ -3,9 +3,9 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var MongoClient = require('mongodb').MongoClient // Driver for connecting to MongoDB
+var MongoClient = require('mongodb').MongoClient;
 
-var routes = require('./routes'); // Routes for our application
+var routes = require('./routes');
 
 
 MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
@@ -17,7 +17,7 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
     
     routes(app, db);
         
-    app.listen(3000);
+    app.listen(1337);
 
-    console.log('Server started: http://localhost:3000/');
+    console.log('Server started: http://localhost:1337/');
 });

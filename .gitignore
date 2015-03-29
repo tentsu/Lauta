@@ -36,9 +36,13 @@
 ehthumbs.db
 Thumbs.db
 
+# SASS #
+########
 .sass-cache
-*.scss
+#*.scss #ok errybody can see it!
 
+# NODE #
+########
 node_modules
 .brackets.json
 .module-cache

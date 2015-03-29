@@ -1,7 +1,8 @@
+
+var http = require('http');
+var fs = require('fs');    
+
 function ThreadController(db) {
-    
-    var http = require('http');
-    var fs = require('fs');
     
     var threads = db.collection("threads");
     
@@ -28,9 +29,9 @@ function ThreadController(db) {
     this.findAllThreads = function(req, res, next) {
         "use strict";
         
-        console.log("all threads")
+        console.log("All threads")
         
-        threads.find().sort('updateTime', -1).toArray(function(err, items) {
+        threads.find({}).sort({'updateTime': -1}).toArray(function(err, items) {
             "use strict";
 
             console.log("Found " + items.length + " posts");
@@ -55,7 +56,7 @@ function ThreadController(db) {
                 }
             }},
             {$project: {
-                _id: 0,
+                "_id": 0,
                 "id": "$answers.id",
                 "time": "$answers.time",
                 "author": "$answers.author",

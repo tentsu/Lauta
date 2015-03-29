@@ -2,7 +2,7 @@
 
 ## Description
 
-**N**ode.js + **A**ngularJS + **M**ongoDB + **R**eact
+MEAN react. yes.
 
 Simple image board to experiment with some technologies (*krhm*react*krhm*).
 
@@ -32,7 +32,7 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Anchor links to posts</del>
 * Error handling in general
 * <del>Get rid of the only template file (embed it to the app.js)?</del>
-* Update package.json
+* <del>Update package.json</del>
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
 
@@ -41,4 +41,16 @@ But hey, I still love "Fixed things." commits. :P
 
 * <del>If thread has less than 3 answers, none of them are show in the frontpage</del>
 * <del>Posts' timestamps need somes 0s and +1s</del>
-* Long one line messages go over box
+* <del>Long one line messages go over box</del>
+
+## Installation
+
+'Cause everybody wants this and I need to see this here. That's why.
+
+Install everything needed
+
+    git clone https://github.com/tentsu/Lauta.git
+    
+    npm install
+    
+Turn MongoDB on localhost and create DB called lauta
