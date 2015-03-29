@@ -103,7 +103,7 @@ function ThreadController(db) {
         }
         
         if (req.files.myFile) {
-            post.img = "images/" + req.files.myFile.originalFilename;
+            post.img = "web/uploads/" + req.files.myFile.originalFilename;
         }
         
         threads.insert(post, function(err, inserted) {
@@ -142,7 +142,7 @@ function ThreadController(db) {
 
         if (req.files.myFile) {
             var format = req.files.myFile.originalFilename.split(".");
-            post.img = 'images/' + createID(6) + '.' + format[format.length - 1];
+            post.img = 'web/uploads/' + createID(6) + '.' + format[format.length - 1];
         }
         
         var doc = { id: parseInt(req.body.threadId) };
