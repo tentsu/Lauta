@@ -46,3 +46,8 @@ Thumbs.db
 node_modules
 .brackets.json
 .module-cache
+
+
+
+# PROJECT SPECIFIC #
+uploads
