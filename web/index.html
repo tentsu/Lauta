@@ -7,9 +7,7 @@
     
 </head>
 <body>
-    <div id="content" ng-view>
-    </div>
-    
+    <div id="content" ng-view></div>
     
     <alert-box></alert-box>
 
@@ -38,11 +36,10 @@
     
     <script src="web/js/lib/alertSystem.js"></script>
     
-    
-    
     <script type="text/javascript">
         angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
+    <script src="//localhost:35729/livereload.js"></script>
     
 </body>
 </html>

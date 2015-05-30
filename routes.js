@@ -1,6 +1,6 @@
 
 var multipart = require('connect-multiparty');
-var ThreadController = require('./threadController');
+var ThreadController = require('./threads');
 
 module.exports = function(app, db) {
     var multipartMiddleware = multipart();

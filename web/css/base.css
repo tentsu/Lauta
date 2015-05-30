@@ -79,8 +79,7 @@ header {
   margin: 5px 0 10px; }
 
 .threadForm {
-  margin: 20px auto;
-  background: yellow; }
+  margin: 20px auto; }
   .threadForm input, .threadForm textarea {
     box-sizing: border-box;
     display: block;
@@ -107,6 +106,7 @@ header {
     color: #4CB6A4;
     text-transform: uppercase;
     letter-spacing: 1px;
+    cursor: pointer;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;

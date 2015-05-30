@@ -139,7 +139,6 @@ header {
 
 .threadForm {
     margin: 20px auto;
-    background: yellow;
     
     input, textarea {
         box-sizing: border-box;
@@ -171,6 +170,7 @@ header {
         color: $green;
         text-transform: uppercase;
         letter-spacing: 1px;
+        cursor: pointer;
         
         @include transition(all, 0.2s, ease);
         
