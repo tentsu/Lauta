@@ -47,10 +47,6 @@ But hey, I still love "Fixed things." commits. :P
 
 'Cause everybody wants this and I need to see this here. That's why.
 
-Install everything needed
-
-    git clone https://github.com/tentsu/Lauta.git
-    
-    npm install
-    
-Turn MongoDB on localhost and create DB called lauta
+    $ git clone https://github.com/tentsu/Lauta.git
+    $ npm install
+    $ nodejs app.js

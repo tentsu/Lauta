@@ -71,10 +71,10 @@ header {
 }
 
 
-//.threadTitle {
-//    font-size: 1.1rem;
-//    line-height: 2;
-//}
+/*.threadTitle {
+    font-size: 1.1rem;
+    line-height: 2;
+}*/
 
 .post {
     margin-bottom: 20px;
@@ -139,6 +139,7 @@ header {
 
 .threadForm {
     margin: 20px auto;
+    background: yellow;
     
     input, textarea {
         box-sizing: border-box;
