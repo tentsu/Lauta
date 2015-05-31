@@ -3,9 +3,15 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         sass: {
-            dev: {
-                src: ['web/css/*.scss'],
-                dest: 'web/css/*.css',
+            dist: {
+                
+              files: [{
+                expand: true,
+                cwd: 'web/css',
+                src: ['*.scss'],
+                dest: 'web/css',
+                ext: '.css'
+              }]
             },
         },
         concurrent: {
