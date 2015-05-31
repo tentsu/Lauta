@@ -38,6 +38,7 @@ But hey, I still love "Fixed things." commits. :P
 * Posts' ids in sequence
 * Prettier file upload
 * Captcha or whatnot
+* Some nice faggot fadings when location changes
 
 
 ## Bugs
