@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-var NewThreadForm = React.createClass({displayName: 'NewThreadForm',
+var NewThreadForm = React.createClass({displayName: "NewThreadForm",
     sendForm: function(e, data) {
         e.preventDefault();
         e.stopPropagation();

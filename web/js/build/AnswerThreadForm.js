@@ -1,7 +1,7 @@
  /** @jsx React.DOM */
 
-var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
-    sendForm: function(e) {
+var AnswerThreadForm = React.createClass({displayName: "AnswerThreadForm",
+    sendForm: function (e) {
         e.preventDefault();
         e.stopPropagation();
         
@@ -15,13 +15,12 @@ var AnswerThreadForm = React.createClass({displayName: 'AnswerThreadForm',
             document.getElementById("answerThreadForm").reset();
         });
     },
-    render: function() {
+    render: function () {
         return (
             React.createElement("div", {className: "threadForm answer"}, 
                 React.createElement("form", {name: "answerThreadForm", id: "answerThreadForm", onSubmit: this.sendForm}, 
                     React.createElement("h2", null, "Answer thread"), 
                     React.createElement("textarea", {ref: "message", placeholder: "Thread message", id: "postMessage"}), 
-            
                     React.createElement("input", {type: "file", name: "displayImage", id: "postImage", accept: "image/*", ref: "image"}), 
                     React.createElement("button", {type: "submit"}, "Answer thread")
                 )

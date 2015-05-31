@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-var Thread = React.createClass({displayName: 'Thread',
+var Thread = React.createClass({displayName: "Thread",
     render: function() {
         var props = this.props;
         var skippedAnswers = React.createElement("div", null);

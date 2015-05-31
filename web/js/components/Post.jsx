@@ -81,7 +81,7 @@ var Post = React.createClass({
                         <img onClick={this.imageClick} className={imageSize} src={data.img} />
                     </a>
                     <div className="postId">
-                        <a href="" onClick={this.postIdClick}> >>{data.id}</a>
+                        <a href="" onClick={this.postIdClick}> &#62;&#62; {data.id}</a>
                     </div>
                     <div className="author">
                         {data.author}

@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var Header = React.createClass({displayName: 'Header',
+var Header = React.createClass({displayName: "Header",
     render: function() {
         return (
             React.createElement("header", null, 

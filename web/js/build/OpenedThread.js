@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-window.OpenedThread = React.createClass({displayName: 'OpenedThread',
+window.OpenedThread = React.createClass({displayName: "OpenedThread",
     render: function() {
 //        console.log("Opened thread");
 //        console.log(this.props)

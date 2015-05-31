@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://localhost:27017/lauta', function(err, db) {
     app.use(bodyParser.urlencoded({extended: true}));
     
 //    app.use('/web/partials', express.static(__dirname + '/web/partials'));
-    console.log("asddsa");
+    console.log("restarted");
     routes(app, db);
         
     app.listen(1337);

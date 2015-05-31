@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-var Post = React.createClass({displayName: 'Post',
+var Post = React.createClass({displayName: "Post",
     getInitialState: function() {
         return {
             full: false
@@ -81,7 +81,7 @@ var Post = React.createClass({displayName: 'Post',
                         React.createElement("img", {onClick: this.imageClick, className: imageSize, src: data.img})
                     ), 
                     React.createElement("div", {className: "postId"}, 
-                        React.createElement("a", {href: "", onClick: this.postIdClick}, " >>", data.id)
+                        React.createElement("a", {href: "", onClick: this.postIdClick}, " >> ", data.id)
                     ), 
                     React.createElement("div", {className: "author"}, 
                         data.author

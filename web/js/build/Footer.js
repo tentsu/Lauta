@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var Footer = React.createClass({displayName: 'Footer',
+var Footer = React.createClass({displayName: "Footer",
     render: function() {
         return (
             React.createElement("footer", null, 

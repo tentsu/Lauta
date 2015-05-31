@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-var Lauta = React.createClass({displayName: 'Lauta',
+var Lauta = React.createClass({displayName: "Lauta",
     getDefaultProps: function() {
         return {
             threads: []

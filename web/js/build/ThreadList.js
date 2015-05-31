@@ -1,6 +1,6 @@
  /** @jsx React.DOM */
 
-var ThreadList = React.createClass({displayName: 'ThreadList',
+var ThreadList = React.createClass({displayName: "ThreadList",
     render: function() {
         var props = this.props;
         
