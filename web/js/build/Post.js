@@ -11,15 +11,15 @@ var Post = React.createClass({displayName: "Post",
             mins    = addZero(time.getMinutes()),
             secs    = addZero(time.getSeconds()),
             day     = addZero(time.getDate()),
-            mm      = addZero(time.getMonth()) + 1; // Correct month
+            mm      = addZero(time.getMonth() + 1); // Correct month
         
-        var tm = hours + ":" + mins + ":" + secs;
-        var dt = day + "." + mm + "." + time.getFullYear();
+        var dt = day + '.' + mm + '.' + time.getFullYear();
+        var tm = hours + ':' + mins + ':' + secs;
         
-        return (dt + " " + tm);
+        return (dt + ' ' + tm);
         
         function addZero(str) {
-            return (str < 10) ? "0" + str : str;
+            return (str < 10) ? '0' + str : str;
         }
     },
     imageClick: function(event) {
@@ -31,15 +31,15 @@ var Post = React.createClass({displayName: "Post",
         this.setState({full: !this.state.full});
     },
     deletePost: function() {
-        if (this.props.scope.thread == undefined) {
-            console.log("jk lol.")
+        if (this.props.scope.thread === undefined) {
+            console.log('jk lol.');
             return;
         }
         
         this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
     },
     postIdClick: function() {
-        document.getElementById("postMessage").value += ">>" + this.props.data.id;
+        document.getElementById('postMessage').value += '>>' + this.props.data.id;
     },
     render: function() {
         var data = this.props.data;
@@ -62,13 +62,13 @@ var Post = React.createClass({displayName: "Post",
             ?   React.createElement("div", {className: "threadTitle"}, 
                     React.createElement("h2", null, React.createElement("a", {href: data.id}, data.title))
                 )
-            : "";
+            : '';
         
-        var deleteButton = (this.props.scope.thread != undefined)
+        var deleteButton = (this.props.scope.thread !== undefined)
             ?   React.createElement("div", {className: "deletePost", onClick: this.deletePost}, 
                     "Delete"
                 )
-            : "";
+            : '';
         
         var postLink = '#' + data.id;
         

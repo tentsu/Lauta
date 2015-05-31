@@ -11,15 +11,15 @@ var Post = React.createClass({
             mins    = addZero(time.getMinutes()),
             secs    = addZero(time.getSeconds()),
             day     = addZero(time.getDate()),
-            mm      = addZero(time.getMonth()) + 1; // Correct month
+            mm      = addZero(time.getMonth() + 1); // Correct month
         
-        var tm = hours + ":" + mins + ":" + secs;
-        var dt = day + "." + mm + "." + time.getFullYear();
+        var dt = day + '.' + mm + '.' + time.getFullYear();
+        var tm = hours + ':' + mins + ':' + secs;
         
-        return (dt + " " + tm);
+        return (dt + ' ' + tm);
         
         function addZero(str) {
-            return (str < 10) ? "0" + str : str;
+            return (str < 10) ? '0' + str : str;
         }
     },
     imageClick: function(event) {
@@ -31,15 +31,15 @@ var Post = React.createClass({
         this.setState({full: !this.state.full});
     },
     deletePost: function() {
-        if (this.props.scope.thread == undefined) {
-            console.log("jk lol.")
+        if (this.props.scope.thread === undefined) {
+            console.log('jk lol.');
             return;
         }
         
         this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
     },
     postIdClick: function() {
-        document.getElementById("postMessage").value += ">>" + this.props.data.id;
+        document.getElementById('postMessage').value += '>>' + this.props.data.id;
     },
     render: function() {
         var data = this.props.data;
@@ -59,16 +59,16 @@ var Post = React.createClass({
         });
         
         var titleBar = (this.props.op)
-            ?   <div className="threadTitle">
+            ?   <div className='threadTitle'>
                     <h2><a href={data.id}>{data.title}</a></h2>
                 </div>
-            : "";
+            : '';
         
-        var deleteButton = (this.props.scope.thread != undefined)
-            ?   <div className="deletePost" onClick={this.deletePost}>
+        var deleteButton = (this.props.scope.thread !== undefined)
+            ?   <div className='deletePost' onClick={this.deletePost}>
                     Delete
                 </div>
-            : "";
+            : '';
         
         var postLink = '#' + data.id;
         
@@ -77,19 +77,19 @@ var Post = React.createClass({
                 {titleBar}
                 <div className={postStyles} id={data.id}>
                     {deleteButton}
-                    <a target="_blank" href={data.img}>
+                    <a target='_blank' href={data.img}>
                         <img onClick={this.imageClick} className={imageSize} src={data.img} />
                     </a>
-                    <div className="postId">
-                        <a href="" onClick={this.postIdClick}> &#62;&#62; {data.id}</a>
+                    <div className='postId'>
+                        <a href='' onClick={this.postIdClick}> &#62;&#62; {data.id}</a>
                     </div>
-                    <div className="author">
+                    <div className='author'>
                         {data.author}
                     </div>
-                    <div className="time">
+                    <div className='time'>
                         {time}
                     </div>
-                    <div className="message">
+                    <div className='message'>
                         {data.message}
                     </div>
                 </div>

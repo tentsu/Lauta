@@ -43,12 +43,12 @@ header {
 }*/
 .post {
   margin-bottom: 20px;
-  background-color: #D3D3D3;
+  background-color: #E1E1E1;
   display: block;
   overflow: auto;
   padding: 25px; }
   .post.op {
-    background: #99C5B4; }
+    background: #C6DAD2; }
   .post .postId, .post .time, .post .author {
     display: inline-block;
     margin-right: 10px; }
@@ -96,7 +96,7 @@ header {
   .threadForm button {
     min-width: 100px;
     padding: 10px 20px;
-    background-color: #D3D3D3;
+    background-color: #E1E1E1;
     border: none;
     margin: 0 auto;
     margin-top: 20px;
@@ -115,7 +115,7 @@ header {
     .threadForm button:hover {
       cursor: pointer;
       color: #4CB6A4;
-      background-color: #99C5B4; }
+      background-color: #C6DAD2; }
 
 footer {
   margin: 100px 0;

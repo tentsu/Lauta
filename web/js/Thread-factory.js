@@ -30,7 +30,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
                 var temp = [];
                 
                 for (var j = 1; j <= 3; j++) {
-                    if (data[i].answers[answerCount - j] != undefined) {
+                    if (data[i].answers[answerCount - j] !== undefined) {
                         temp.unshift(data[i].answers[answerCount - j]);
                     }
                 }
@@ -41,7 +41,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
             
             d.resolve(data);
         }, function (response) {
-            console.log(response)
+            d.reject(response);
         });
 
         return d.promise;
@@ -57,11 +57,12 @@ function ThreadFactory($http, $q, Threads, $upload) {
      */
     function getThread(id) {
         var d = $q.defer();
+        
         Threads.get({id: id}, function(response) {
             response.answerCount = response.answers.length;
             d.resolve(response);
         }, function (response) {
-            console.log(response)
+            d.reject(response);
         });
         
         return d.promise;
@@ -81,7 +82,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
         Threads.query(specs, function(response) {
             d.resolve(response);
         }, function (response) {
-            console.log(response)
+            d.reject(response);
         });
         
         return d.promise;
@@ -138,7 +139,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
         Threads.delete({threadId: threadId, postId: postId}, function(response) {
             d.resolve(response);
         }, function (response) {
-            console.log(response)
+            d.reject(response);
         });
         
         return d.promise;
@@ -188,7 +189,7 @@ function ThreadResource($resource) {
         });
 
         return fd;
-    }
+    };
     
     return $resource("/api/posts/:id/:time/:threadId/:postId",
         {id: "@id", time: '@time', threadId: '@threadId', postId: '@postId'},

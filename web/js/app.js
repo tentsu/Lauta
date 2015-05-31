@@ -18,7 +18,7 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
                 }), document.getElementById('react'));
             });
         }
-    }
+    };
 })
 .directive('opened', function( reactDirective ) {
     return {
@@ -30,7 +30,7 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
                 }), document.getElementById('react'));
             }, true);
         }
-    }
+    };
 })
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
@@ -39,7 +39,6 @@ angular.module('Board', ['Main', 'Thread', 'react', 'ngRoute', 'ngResource', 'an
             controller: 'MainCtrl',
         })
         .when('/:threadId', {
-//            templateUrl: 'web/partials/thread.html',
             template: '<opened id="react"/>',
             controller: 'ThreadCtrl',
         })

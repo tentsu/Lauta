@@ -35,6 +35,9 @@ But hey, I still love "Fixed things." commits. :P
 * <del>Update package.json</del>
 * <a href="https://github.com/johnpapa/angularjs-styleguide">Commenting, commenting... </a>
 * CSS. Yes, very much CSS
+* Posts' ids in sequence
+* Prettier file upload
+* Captcha or whatnot
 
 
 ## Bugs
