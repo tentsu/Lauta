@@ -39,11 +39,13 @@ var Post = React.createClass({
         this.props.scope.deletePost(this.props.scope.thread.id, this.props.data.id);
     },
     postIdClick: function() {
+        console.log(this.props.data)
+    
         document.getElementById('postMessage').value += '>>' + this.props.data.id;
     },
     render: function() {
         var data = this.props.data;
-//        console.log(this.props)
+        console.log(this.props)
         
         var time = this.parseTime(new Date(data.time));
         
@@ -81,7 +83,7 @@ var Post = React.createClass({
                         <img onClick={this.imageClick} className={imageSize} src={data.img} />
                     </a>
                     <div className='postId'>
-                        <a href='' onClick={this.postIdClick}> &#62;&#62; {data.id}</a>
+                        <a href={postLink} onClick={this.postIdClick}> &#62;&#62; {data.id}</a>
                     </div>
                     <div className='author'>
                         {data.author}

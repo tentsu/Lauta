@@ -120,7 +120,7 @@ function ThreadController(db) {
                 });
             }
             
-            res.send({ id: post.id});
+            res.send({id: post.id});
         });
     }
     

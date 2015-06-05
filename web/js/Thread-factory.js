@@ -24,6 +24,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
     
     function getThreads() {
         var d = $q.defer();
+        
         Threads.query({}, function(data) {
             for (var i = 0; i < data.length; i++) {
                 var answerCount = data[i].answers.length;
@@ -79,6 +80,7 @@ function ThreadFactory($http, $q, Threads, $upload) {
      */
     function getNewAnswers(specs) {
         var d = $q.defer();
+        
         Threads.query(specs, function(response) {
             d.resolve(response);
         }, function (response) {
